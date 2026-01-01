@@ -136,8 +136,8 @@
             { 
                 title: "Đề 01: Nguyên hàm - Tích phân", 
                 questions: [
-                      
-        // PHẦN I (12 câu)
+                        
+         // PHẦN I (12 câu)
         { part: 1, type: 'v1', q: "Mệnh đề nào dưới đây là <b>sai</b>?", a: ["$\\displaystyle \\int f'(x) dx = f(x)+C$","$\\displaystyle \\int [f(x)+g(x)] dx = \\int f(x)dx + \\int g(x)dx$","$\\displaystyle \\int k f(x) dx = k \\int f(x)dx$","$\\displaystyle \\int [f(x)-g(x)] dx = \\int f(x)dx - \\int g(x)dx$"], c: 2, sol: "Tính chất $\\displaystyle \\int k f(x) dx = k \\int f(x)dx$ chỉ đúng khi hằng số $k \\neq 0$." },
         { part: 1, type: 'v1', q: "Nguyên hàm của hàm số $f(x) = \\cos x$ là:", a: ["$-\\sin x + C$", "$\\sin x + C$", "$\\cos x + C$", "$-\\cos x + C$"], c: 1, sol: "Ta có $\\displaystyle (\\sin x)' = \\cos x$." },
         { part: 1, type: 'v1', q: "Tìm họ nguyên hàm của hàm số $f(x) = 5^x$.", a: ["$5^x + C$", "$5^x \\ln 5 + C$", "$\\displaystyle \\dfrac{5^x}{\\ln 5} + C$", "$\\displaystyle \\dfrac{5^{x+1}}{x+1} + C$"], c: 2, sol: "Sử dụng công thức $\\displaystyle \\int a^x dx = \\dfrac{a^x}{\\ln a} + C$." },
@@ -148,7 +148,7 @@
         { part: 1, type: 'v1', q: "Hiệu $F(0)-F(1)$ bằng:", a: ["$\\displaystyle \\int_0^1 f(x)dx$", "$\\displaystyle \\int_0^1 F(x)dx$", "$\\displaystyle \\int_1^0 F(x)dx$", "$\\displaystyle \\int_1^0 f(x)dx$"], c: 3, sol: "Theo Newton-Leibniz: $\\int_1^0 f(x)dx = F(0)-F(1)$." },
         { part: 1, type: 'v1', q: "Cho $f(1)=2, f(3)=9$. Tính $I = \\displaystyle \\int_1^3 f'(x)dx$.", a: ["11", "7", "2", "18"], c: 1, sol: "$I = f(3) - f(1) = 9-2=7$." },
         { part: 1, type: 'v1', q: "Diện tích hình phẳng giới hạn bởi $y=f(x), Ox, x=a, x=b$ là:", a: ["$S=\\displaystyle \\pi \\int_a^b f^2(x)dx$", "$S=\\displaystyle \\int_a^b f(x)dx$", "$S=\\displaystyle \\pi \\int_a^b |f(x)|dx$", "$S=\\displaystyle \\int_a^b |f(x)|dx$"], c: 3, sol: "Công thức chuẩn có trị tuyệt đối." },
-        { part: 1, type: 'v1', q: "Khẳng định nào đúng về diện tích $S$? <div class='img-container'><img src='cau11.png'></div>", a: ["$\\displaystyle S = \\int_a^b [f_2(x)-f_1(x)] dx$", "$\\displaystyle S = \\int_a^b [f_1(x)-f_2(x)] dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)]^2 dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)] dx$"], c: 1, sol: "Lấy hàm nằm trên trừ hàm nằm dưới." },
+        { part: 1, type: 'v1', q: "Khẳng định nào đúng về diện tích $S$? <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau11.png'></div>", a: ["$\\displaystyle S = \\int_a^b [f_2(x)-f_1(x)] dx$", "$\\displaystyle S = \\int_a^b [f_1(x)-f_2(x)] dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)]^2 dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)] dx$"], c: 1, sol: "Lấy hàm nằm trên trừ hàm nằm dưới." },
         { part: 1, type: 'v1', q: "Thể tích vật thể giới hạn bởi hai mặt phẳng $x=a, x=b$ có thiết diện $S(x)$:", a: ["$\\displaystyle V = \\int_b^a S(x)dx$", "$\\displaystyle V = \\pi \\int_b^a S(x)dx$", "$V = \\pi \\int_b^a S(x)^2dx$", "$\\displaystyle \\int_a^b S(x)dx$"], c: 3, sol: "Công thức thể tích thiết diện." },
 
         // PHẦN II (4 câu)
@@ -161,7 +161,7 @@
         { part: 2, num: 3, type: 'v2', q: "Cho hàm số $\\displaystyle f(x) = x + 5 - \\frac{6}{x}$ trên $\\mathbb{R}\\backslash\\{0\\}$.", 
           items: [ {l: "$f'(x) = 1 + 6/x^2$", r: true}, {l: "$\\displaystyle \\int f(x)dx = 0.5x^2 + 5x - 6\\ln|x| + C$", r: true}, {l: "$\\displaystyle F(2) = F(1) + \\int_1^2 f(x)dx$", r: true}, {l: "$G(-6) = -13 - 6\\ln 3$", r: true} ], 
           sol: "Kiểm tra đạo hàm và Newton-Leibniz từng khoảng." },
-        { part: 2, num: 4, type: 'v2', q: "Cho BBT đạo hàm $f'(x)$ như hình: <div class='img-container'><img src='cau4_ds.png'></div>", 
+        { part: 2, num: 4, type: 'v2', q: "Cho BBT đạo hàm $f'(x)$ như hình: <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau4_ds.png'></div>", 
           items: [ {l: "$\\displaystyle \\int_2^5 f'(x)dx = f(5)-f(2)$", r: true}, {l: "$f'(x) < 0$ trên $(2,3)$", r: true}, {l: "Hàm đồng biến trên $(3,5)$", r: true}, {l: "$f(2) > f(3)$", r: true} ], 
           sol: "Dựa vào dấu đạo hàm trên BBT để xét tính đơn điệu." },
 
@@ -170,10 +170,10 @@
         { part: 3, num: 2, type: 'v3', q: "Cho các tích phân của $f(x), g(x)$. Tính $\\displaystyle \\int_2^7 [f(x)-g(x)]$ (làm tròn 2 chữ số TP).", c: "3.14", sol: "Giải hệ PT $\\Rightarrow 22/7 \\approx 3.14$." },
         { part: 3, num: 3, type: 'v3', q: "Cho $F(x) = (ax^2+bx+c)e^x$ là nguyên hàm của $(x^2+1)e^x$. Tính $a+b+c$.", c: "2", sol: "Đồng nhất hệ số được $a=1, b=-2, c=3$." },
         { part: 3, num: 4, type: 'v3', q: "Cho hàm số $f(x)$ cho bởi 2 công thức. Tính $\\displaystyle \\int_0^3 f(x)dx$.", c: "7.5", sol: "Tách tại cận $x=2$ được $7.5$." },
-        { part: 3, num: 5, type: 'v3', q: "Tính $f(3)$ biết $S_A=4, S_B=10, f(0)=2$. <div class='img-container'><img src='cau5_kq.png'></div>", c: "-4", sol: "$2 + 4 - 10 = -4$." },
-        { part: 3, num: 6, type: 'v3', q: "Tính tiền trồng hoa (làm tròn hàng đơn vị). <div class='img-container'><img src='cau6_kq.png'></div>", c: "4985", 
-          sol: "1. Giao điểm $x = \\pm 2$. 2. $S \\approx 19.94 m^2$. 3. Tiền $\approx 4985$." }
-    ];
+        { part: 3, num: 5, type: 'v3', q: "Tính $f(3)$ biết $S_A=4, S_B=10, f(0)=2$. <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau5_kq.png'></div>", c: "-4", sol: "$2 + 4 - 10 = -4$." },
+        { part: 3, num: 6, type: 'v3', q: "Tính tiền trồng hoa (làm tròn hàng đơn vị). <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau6_kq.png'></div>", c: "4985", 
+          sol: " <div class='img-container' style='margin-bottom:15px;'><img src='images/nguyenham_tichphan/de1/cau6_kq_lg.png' style='max-width:100%; border: 1px solid #30363d;'></div> 1. Giao điểm $x = \\pm 2$. 2. $S \\approx 19.94 m^2$. 3. Tiền $\\approx 4985$." }
+   
                 ] 
             }
         ],
