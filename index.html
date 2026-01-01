@@ -130,54 +130,57 @@
 <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjZBQWpiklw60rfJViq7FTkrnY7J9bFrvlLMB9_SLHlHKvSzQBuV3mZ-fd3jT6ofdWnA/exec";
 
-    // --- DATABASE ĐỀ THI (Thầy tự thêm tại đây) ---
+    // --- DATABASE ĐỀ THI ---
     const examDatabase = {
         "12": [
             { 
-                title: "Đề 01: Nguyên hàm - Tích phân", 
-                questions: [
-                        
-         // PHẦN I (12 câu)
-        { part: 1, type: 'v1', q: "Mệnh đề nào dưới đây là <b>sai</b>?", a: ["$\\displaystyle \\int f'(x) dx = f(x)+C$","$\\displaystyle \\int [f(x)+g(x)] dx = \\int f(x)dx + \\int g(x)dx$","$\\displaystyle \\int k f(x) dx = k \\int f(x)dx$","$\\displaystyle \\int [f(x)-g(x)] dx = \\int f(x)dx - \\int g(x)dx$"], c: 2, sol: "Tính chất $\\displaystyle \\int k f(x) dx = k \\int f(x)dx$ chỉ đúng khi hằng số $k \\neq 0$." },
-        { part: 1, type: 'v1', q: "Nguyên hàm của hàm số $f(x) = \\cos x$ là:", a: ["$-\\sin x + C$", "$\\sin x + C$", "$\\cos x + C$", "$-\\cos x + C$"], c: 1, sol: "Ta có $\\displaystyle (\\sin x)' = \\cos x$." },
-        { part: 1, type: 'v1', q: "Tìm họ nguyên hàm của hàm số $f(x) = 5^x$.", a: ["$5^x + C$", "$5^x \\ln 5 + C$", "$\\displaystyle \\dfrac{5^x}{\\ln 5} + C$", "$\\displaystyle \\dfrac{5^{x+1}}{x+1} + C$"], c: 2, sol: "Sử dụng công thức $\\displaystyle \\int a^x dx = \\dfrac{a^x}{\\ln a} + C$." },
-        { part: 1, type: 'v1', q: "Cho $F(x)$ là nguyên hàm của $f(x)$ trên $K$. Khẳng định nào đúng?", a: ["$f'(x) = F(x)$", "$F'(x) = f(x)$", "$F(x) = f(x)$", "$F'(x) = f'(x)$"], c: 1, sol: "Định nghĩa: $F'(x) = f(x)$." },
-        { part: 1, type: 'v1', q: "Tìm $\\displaystyle \\int \\dfrac{1}{x^2} dx$.", a: ["$\\displaystyle \\dfrac{1}{x} + C$", "$\\displaystyle -\\dfrac{1}{x} + C$", "$\\displaystyle \\dfrac{1}{2x} + C$", "$\\ln x^2 + C$"], c: 1, sol: "$\\displaystyle \\int x^{-2}dx = -1/x + C$." },
-        { part: 1, type: 'v1', q: "Họ nguyên hàm của hàm số $f(x) = x^2 - 3x + \\dfrac{1}{x}$ là:", a: ["$F(x) = 2x - 3 - 1/x^2 + C$","$\\displaystyle F(x) = \\dfrac{x^3}{3} - \\dfrac{3}{2}x^2 + \\ln|x| + C$","$\\displaystyle F(x) = \\dfrac{x^3}{3} + \\frac{3}{2}x^2 + \\ln x + C$","$\\displaystyle F(x) = \\dfrac{x^3}{3} - \\dfrac{3}{2}x^2 + \\ln x + C$"], c: 1, sol: "Nguyên hàm từng số hạng cơ bản." },
-        { part: 1, type: 'v1', q: "Cho $a, b, c \\in K, f(x)$ liên tục. Mệnh đề nào sau đây <b>sai</b>?", a: ["$\\displaystyle \\int_a^b f + \\int_c^b f = \\int_a^c f$","$\\displaystyle \\int_a^b f(x)dx = \\int_a^b f(t)dt$","$\\displaystyle \\int_a^b f = -\\int_b^a f$","$\\displaystyle \\int_a^a f = 0$"], c: 0, sol: "Tính chất đúng: $\\int_a^c + \\int_c^b = \\int_a^b$." },
-        { part: 1, type: 'v1', q: "Hiệu $F(0)-F(1)$ bằng:", a: ["$\\displaystyle \\int_0^1 f(x)dx$", "$\\displaystyle \\int_0^1 F(x)dx$", "$\\displaystyle \\int_1^0 F(x)dx$", "$\\displaystyle \\int_1^0 f(x)dx$"], c: 3, sol: "Theo Newton-Leibniz: $\\int_1^0 f(x)dx = F(0)-F(1)$." },
-        { part: 1, type: 'v1', q: "Cho $f(1)=2, f(3)=9$. Tính $I = \\displaystyle \\int_1^3 f'(x)dx$.", a: ["11", "7", "2", "18"], c: 1, sol: "$I = f(3) - f(1) = 9-2=7$." },
-        { part: 1, type: 'v1', q: "Diện tích hình phẳng giới hạn bởi $y=f(x), Ox, x=a, x=b$ là:", a: ["$S=\\displaystyle \\pi \\int_a^b f^2(x)dx$", "$S=\\displaystyle \\int_a^b f(x)dx$", "$S=\\displaystyle \\pi \\int_a^b |f(x)|dx$", "$S=\\displaystyle \\int_a^b |f(x)|dx$"], c: 3, sol: "Công thức chuẩn có trị tuyệt đối." },
-        { part: 1, type: 'v1', q: "Khẳng định nào đúng về diện tích $S$? <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau11.png'></div>", a: ["$\\displaystyle S = \\int_a^b [f_2(x)-f_1(x)] dx$", "$\\displaystyle S = \\int_a^b [f_1(x)-f_2(x)] dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)]^2 dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)] dx$"], c: 1, sol: "Lấy hàm nằm trên trừ hàm nằm dưới." },
-        { part: 1, type: 'v1', q: "Thể tích vật thể giới hạn bởi hai mặt phẳng $x=a, x=b$ có thiết diện $S(x)$:", a: ["$\\displaystyle V = \\int_b^a S(x)dx$", "$\\displaystyle V = \\pi \\int_b^a S(x)dx$", "$V = \\pi \\int_b^a S(x)^2dx$", "$\\displaystyle \\int_a^b S(x)dx$"], c: 3, sol: "Công thức thể tích thiết diện." },
-
-        // PHẦN II (4 câu)
-        { part: 2, num: 1, type: 'v2', q: "Cho $F(x)$ là một nguyên hàm của hàm số $\\displaystyle f(x) = \\frac{x^2+1}{x}$ trên $(0;+\\infty)$.", 
-          items: [ {l: "$F(x) = f'(x)$", r: false}, {l: "$F(x)+2025$ là nguyên hàm", r: true}, {l: "$F(x) = x^2 + \\ln x + 2025$", r: false}, {l: "$F(1) = 1.5 \\Rightarrow F(x) = 0.5x^2 + \\ln x + 1$", r: true} ], 
-          sol: "<span class='sol-item'>a) <b>Sai:</b> Theo định nghĩa $F'(x) = f(x)$.</span><span class='sol-item'>b) <b>Đúng:</b> Họ nguyên hàm sai khác hằng số C.</span><span class='sol-item'>c) <b>Sai:</b> Nguyên hàm là $x^2/2$.</span><span class='sol-item'>d) <b>Đúng:</b> Thay $x=1$ giải ra $C=1$." },
-        { part: 2, num: 2, type: 'v2', q: "Cho hàm số $f(x) = 6x^5 - x^e$. Gọi $\\displaystyle I = \\int_a^b 6x^5 dx$ và $\\displaystyle J = \\int_a^b x^e dx$.", 
-          items: [ {l: "$\\displaystyle \\int x^5 dx = I/6$", r: true}, {l: "$\\displaystyle \\int f(x) dx = I + J$", r: false}, {l: "$\\displaystyle J = \\frac{b^{e+1}-a^{e+1}}{e+1}$", r: true}, {l: "$\\displaystyle \\int_0^1 f(x)dx = 1 - \\frac{1}{e+1}$", r: true} ], 
-          sol: "<b>Phân tích:</b><br><span class='sol-item'>a) Đúng do tính chất đẩy hằng số.</span><span class='sol-item'>b) Sai, phải là dấu trừ.</span>" },
-        { part: 2, num: 3, type: 'v2', q: "Cho hàm số $\\displaystyle f(x) = x + 5 - \\frac{6}{x}$ trên $\\mathbb{R}\\backslash\\{0\\}$.", 
-          items: [ {l: "$f'(x) = 1 + 6/x^2$", r: true}, {l: "$\\displaystyle \\int f(x)dx = 0.5x^2 + 5x - 6\\ln|x| + C$", r: true}, {l: "$\\displaystyle F(2) = F(1) + \\int_1^2 f(x)dx$", r: true}, {l: "$G(-6) = -13 - 6\\ln 3$", r: true} ], 
-          sol: "Kiểm tra đạo hàm và Newton-Leibniz từng khoảng." },
-        { part: 2, num: 4, type: 'v2', q: "Cho BBT đạo hàm $f'(x)$ như hình: <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau4_ds.png'></div>", 
-          items: [ {l: "$\\displaystyle \\int_2^5 f'(x)dx = f(5)-f(2)$", r: true}, {l: "$f'(x) < 0$ trên $(2,3)$", r: true}, {l: "Hàm đồng biến trên $(3,5)$", r: true}, {l: "$f(2) > f(3)$", r: true} ], 
-          sol: "Dựa vào dấu đạo hàm trên BBT để xét tính đơn điệu." },
-
-        // PHẦN III (6 câu)
-        { part: 3, num: 1, type: 'v3', q: "Biết $\\displaystyle \\int (\\sin x - \\cos x)^2 dx = x + \\frac{1}{a} \\cos bx + C$. Tính $a+b$.", c: "4", sol: "$1-\\sin 2x \\Rightarrow x + 0.5\\cos 2x \\Rightarrow a=2, b=2$." },
-        { part: 3, num: 2, type: 'v3', q: "Cho các tích phân của $f(x), g(x)$. Tính $\\displaystyle \\int_2^7 [f(x)-g(x)]$ (làm tròn 2 chữ số TP).", c: "3.14", sol: "Giải hệ PT $\\Rightarrow 22/7 \\approx 3.14$." },
-        { part: 3, num: 3, type: 'v3', q: "Cho $F(x) = (ax^2+bx+c)e^x$ là nguyên hàm của $(x^2+1)e^x$. Tính $a+b+c$.", c: "2", sol: "Đồng nhất hệ số được $a=1, b=-2, c=3$." },
-        { part: 3, num: 4, type: 'v3', q: "Cho hàm số $f(x)$ cho bởi 2 công thức. Tính $\\displaystyle \\int_0^3 f(x)dx$.", c: "7.5", sol: "Tách tại cận $x=2$ được $7.5$." },
-        { part: 3, num: 5, type: 'v3', q: "Tính $f(3)$ biết $S_A=4, S_B=10, f(0)=2$. <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau5_kq.png'></div>", c: "-4", sol: "$2 + 4 - 10 = -4$." },
-        { part: 3, num: 6, type: 'v3', q: "Tính tiền trồng hoa (làm tròn hàng đơn vị). <div class='img-container'><img src='images/nguyenham_tichphan/de1/cau6_kq.png'></div>", c: "4985", 
-          sol: " <div class='img-container' style='margin-bottom:15px;'><img src='images/nguyenham_tichphan/de1/cau6_kq_lg.png' style='max-width:100%; border: 1px solid #30363d;'></div> 1. Giao điểm $x = \\pm 2$. 2. $S \\approx 19.94 m^2$. 3. Tiền $\\approx 4985$." }
-   
-                ] 
+                topic: "Nguyên hàm - Tích phân",
+                exams: [
+                    {
+                        title: "Đề 01: Nguyên hàm - Tích phân", 
+                        questions: [
+                            // Dữ liệu câu hỏi thầy giữ nguyên như cũ...
+                            { part: 1, type: 'v1', q: "Mệnh đề nào dưới đây là <b>sai</b>?", a: ["$\\displaystyle \\int f'(x) dx = f(x)+C$","$\\displaystyle \\int [f(x)+g(x)] dx = \\int f(x)dx + \\int g(x)dx$","$\\displaystyle \\int k f(x) dx = k \\int f(x)dx$","$\\displaystyle \\int [f(x)-g(x)] dx = \\int f(x)dx - \\int g(x)dx$"], c: 2, sol: "Tính chất $\\displaystyle \\int k f(x) dx = k \\int f(x)dx$ chỉ đúng khi hằng số $k \\neq 0$." },
+                            { part: 1, type: 'v1', q: "Nguyên hàm của hàm số $f(x) = \\cos x$ là:", a: ["$-\\sin x + C$", "$\\sin x + C$", "$\\cos x + C$", "$-\\cos x + C$"], c: 1, sol: "Ta có $\\displaystyle (\\sin x)' = \\cos x$." },
+                            { part: 1, type: 'v1', q: "Tìm họ nguyên hàm của hàm số $f(x) = 5^x$.", a: ["$5^x + C$", "$5^x \\ln 5 + C$", "$\\displaystyle \\dfrac{5^x}{\\ln 5} + C$", "$\\displaystyle \\dfrac{5^{x+1}}{x+1} + C$"], c: 2, sol: "Sử dụng công thức $\\displaystyle \\int a^x dx = \\dfrac{a^x}{\\ln a} + C$." },
+                            { part: 1, type: 'v1', q: "Cho $F(x)$ là nguyên hàm của $f(x)$ trên $K$. Khẳng định nào đúng?", a: ["$f'(x) = F(x)$", "$F'(x) = f(x)$", "$F(x) = f(x)$", "$F'(x) = f'(x)$"], c: 1, sol: "Định nghĩa: $F'(x) = f(x)$." },
+                            { part: 1, type: 'v1', q: "Tìm $\\displaystyle \\int \\dfrac{1}{x^2} dx$.", a: ["$\\displaystyle \\dfrac{1}{x} + C$", "$\\displaystyle -\\dfrac{1}{x} + C$", "$\\displaystyle \\dfrac{1}{2x} + C$", "$\\ln x^2 + C$"], c: 1, sol: "$\\displaystyle \\int x^{-2}dx = -1/x + C$." },
+                            { part: 1, type: 'v1', q: "Họ nguyên hàm của hàm số $f(x) = x^2 - 3x + \\dfrac{1}{x}$ là:", a: ["$F(x) = 2x - 3 - 1/x^2 + C$","$\\displaystyle F(x) = \\dfrac{x^3}{3} - \\dfrac{3}{2}x^2 + \\ln|x| + C$","$\\displaystyle F(x) = \\dfrac{x^3}{3} + \\frac{3}{2}x^2 + \\ln x + C$","$\\displaystyle F(x) = \\dfrac{x^3}{3} - \\dfrac{3}{2}x^2 + \\ln x + C$"], c: 1, sol: "Nguyên hàm từng số hạng cơ bản." },
+                            { part: 1, type: 'v1', q: "Cho $a, b, c \\in K, f(x)$ liên tục. Mệnh đề nào sau đây <b>sai</b>?", a: ["$\\displaystyle \\int_a^b f + \\int_c^b f = \\int_a^c f$","$\\displaystyle \\int_a^b f(x)dx = \\int_a^b f(t)dt$","$\\displaystyle \\int_a^b f = -\\int_b^a f$","$\\displaystyle \\int_a^a f = 0$"], c: 0, sol: "Tính chất đúng: $\\int_a^c + \\int_c^b = \\int_a^b$." },
+                            { part: 1, type: 'v1', q: "Hiệu $F(0)-F(1)$ bằng:", a: ["$\\displaystyle \\int_0^1 f(x)dx$", "$\\displaystyle \\int_0^1 F(x)dx$", "$\\displaystyle \\int_1^0 F(x)dx$", "$\\displaystyle \\int_1^0 f(x)dx$"], c: 3, sol: "Theo Newton-Leibniz: $\\int_1^0 f(x)dx = F(0)-F(1)$." },
+                            { part: 1, type: 'v1', q: "Cho $f(1)=2, f(3)=9$. Tính $I = \\displaystyle \\int_1^3 f'(x)dx$.", a: ["11", "7", "2", "18"], c: 1, sol: "$I = f(3) - f(1) = 9-2=7$." },
+                            { part: 1, type: 'v1', q: "Diện tích hình phẳng giới hạn bởi $y=f(x), Ox, x=a, x=b$ là:", a: ["$S=\\displaystyle \\pi \\int_a^b f^2(x)dx$", "$S=\\displaystyle \\int_a^b f(x)dx$", "$S=\\displaystyle \\pi \\int_a^b |f(x)|dx$", "$S=\\displaystyle \\int_a^b |f(x)|dx$"], c: 3, sol: "Công thức chuẩn có trị tuyệt đối." },
+                            { part: 1, type: 'v1', q: "Khẳng định nào đúng về diện tích $S$? <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de1/cau11.png'></div>", a: ["$\\displaystyle S = \\int_a^b [f_2(x)-f_1(x)] dx$", "$\\displaystyle S = \\int_a^b [f_1(x)-f_2(x)] dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)]^2 dx$", "$\\displaystyle S = \\pi \\int_a^b [f_1(x)-f_2(x)] dx$"], c: 1, sol: "Lấy hàm nằm trên trừ hàm nằm dưới." },
+                            { part: 1, type: 'v1', q: "Thể tích vật thể giới hạn bởi hai mặt phẳng $x=a, x=b$ có thiết diện $S(x)$:", a: ["$\\displaystyle V = \\int_b^a S(x)dx$", "$\\displaystyle V = \\pi \\int_b^a S(x)dx$", "$V = \\pi \\int_b^a S(x)^2dx$", "$\\displaystyle \\int_a^b S(x)dx$"], c: 3, sol: "Công thức thể tích thiết diện." },
+                            { part: 2, num: 1, type: 'v2', q: "Cho $F(x)$ là một nguyên hàm của hàm số $\\displaystyle f(x) = \\frac{x^2+1}{x}$ trên $(0;+\\infty)$.", items: [ {l: "$F(x) = f'(x)$", r: false}, {l: "$F(x)+2025$ là nguyên hàm", r: true}, {l: "$F(x) = x^2 + \\ln x + 2025$", r: false}, {l: "$F(1) = 1.5 \\Rightarrow F(x) = 0.5x^2 + \\ln x + 1$", r: true} ], sol: "Phân tích định nghĩa và tính hằng số C." },
+                            { part: 2, num: 2, type: 'v2', q: "Cho hàm số $f(x) = 6x^5 - x^e$.", items: [ {l: "$\\displaystyle \\int x^5 dx = I/6$", r: true}, {l: "$\\displaystyle \\int f(x) dx = I + J$", r: false}, {l: "$\\displaystyle J = \\frac{b^{e+1}-a^{e+1}}{e+1}$", r: true}, {l: "$\\displaystyle \\int_0^1 f(x)dx = 1 - \\frac{1}{e+1}$", r: true} ], sol: "Sử dụng tính chất tích phân." },
+                            { part: 2, num: 3, type: 'v2', q: "Cho hàm số $\\displaystyle f(x) = x + 5 - \\frac{6}{x}$ trên $\\mathbb{R}\\backslash\\{0\\}$.", items: [ {l: "$f'(x) = 1 + 6/x^2$", r: true}, {l: "$\\displaystyle \\int f(x)dx = 0.5x^2 + 5x - 6\\ln|x| + C$", r: true}, {l: "$\\displaystyle F(2) = F(1) + \\int_1^2 f(x)dx$", r: true}, {l: "$G(-6) = -13 - 6\\ln 3$", r: true} ], sol: "Kiểm tra đạo hàm và nguyên hàm." },
+                            { part: 2, num: 4, type: 'v2', q: "Cho BBT đạo hàm $f'(x)$ như hình: <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de1/cau4_ds.png'></div>", items: [ {l: "$\\displaystyle \\int_2^5 f'(x)dx = f(5)-f(2)$", r: true}, {l: "$f'(x) < 0$ trên $(2,3)$", r: true}, {l: "Hàm đồng biến trên $(3,5)$", r: true}, {l: "$f(2) > f(3)$", r: true} ], sol: "Dựa vào dấu đạo hàm xét tính đơn điệu." },
+                            { part: 3, num: 1, type: 'v3', q: "Biết $\\displaystyle \\int (\\sin x - \\cos x)^2 dx = x + \\frac{1}{a} \\cos bx + C$. Tính $a+b$.", c: "4", sol: "$a=2, b=2$." },
+                            { part: 3, num: 2, type: 'v3', q: "Cho các tích phân của $f(x), g(x)$. Tính $\\displaystyle \\int_2^7 [f(x)-g(x)]$ (làm tròn 2 chữ số TP).", c: "3.14", sol: "Giải hệ phương trình." },
+                            { part: 3, num: 3, type: 'v3', q: "Cho $F(x) = (ax^2+bx+c)e^x$ là nguyên hàm của $(x^2+1)e^x$. Tính $a+b+c$.", c: "2", sol: "Đồng nhất hệ số." },
+                            { part: 3, num: 4, type: 'v3', q: "Cho hàm số $f(x)$ cho bởi 2 công thức. Tính $\\displaystyle \\int_0^3 f(x)dx$.", c: "7.5", sol: "Tách tích phân." },
+                            { part: 3, num: 5, type: 'v3', q: "Tính $f(3)$ biết $S_A=4, S_B=10, f(0)=2$. <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de1/cau5_kq.png'></div>", c: "-4", sol: "Sử dụng ý nghĩa hình học của tích phân." },
+                            { part: 3, num: 6, type: 'v3', q: "Tính tiền trồng hoa. <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de1/cau6_kq.png'></div>", c: "4985", sol: "Tính diện tích rồi nhân đơn giá." }
+                        ] 
+                    },
+                    { title: "Đề 02: Ứng dụng tích phân", questions: [] }
+                ]
+            },
+            {
+                topic: "Hình học Oxyz",
+                exams: [
+                    { title: "Đề 01: Hệ tọa độ", questions: [] },
+                    { title: "Đề 02: Mặt phẳng", questions: [] }
+                ]
             }
         ],
-        "11": [],
+        "11": [
+            {
+                topic: "Đạo hàm",
+                exams: [ { title: "Đề 01: Quy tắc tính", questions: [] } ]
+            }
+        ],
         "10": []
     };
 
@@ -200,40 +203,83 @@
         renderClassMenu();
     }
 
+    // CẤP 1: Chọn Khối
     function renderClassMenu() {
         document.getElementById('menu-title').innerText = "CHỌN KHỐI LỚP";
         document.getElementById('back-link').style.display = 'none';
         const list = document.getElementById('menu-list');
-        list.innerHTML = `<button class="menu-btn" onclick="renderExamList('12')">KHỐI 12</button>
-                          <button class="menu-btn" onclick="renderExamList('11')">KHỐI 11</button>
-                          <button class="menu-btn" onclick="renderExamList('10')">KHỐI 10</button>`;
+        list.innerHTML = `
+            <button class="menu-btn" onclick="renderTopicList('12')">KHỐI 12</button>
+            <button class="menu-btn" onclick="renderTopicList('11')">KHỐI 11</button>
+            <button class="menu-btn" onclick="renderTopicList('10')">KHỐI 10</button>
+        `;
     }
 
-    function renderExamList(k) {
-        document.getElementById('menu-title').innerText = "DANH SÁCH ĐỀ KHỐI " + k;
+    // CẤP 2: Chọn Chuyên đề
+    function renderTopicList(k) {
+        document.getElementById('menu-title').innerText = "CHUYÊN ĐỀ LỚP " + k;
         document.getElementById('back-link').style.display = 'block';
-        const list = document.getElementById('menu-list'); list.innerHTML = '';
-        if(!examDatabase[k].length) return list.innerHTML = "<p>Hiện chưa có đề thi nào cho khối này.</p>";
-        examDatabase[k].forEach(exam => {
-            let b = document.createElement('button'); b.className = 'menu-btn'; b.innerText = exam.title;
-            b.onclick = () => startQuiz(exam); list.appendChild(b);
+        document.getElementById('back-link').onclick = renderClassMenu;
+        const list = document.getElementById('menu-list');
+        list.innerHTML = '';
+        
+        if(!examDatabase[k] || examDatabase[k].length === 0) {
+            list.innerHTML = "<p>Hiện chưa có chuyên đề nào.</p>";
+            return;
+        }
+
+        examDatabase[k].forEach((topicObj, index) => {
+            let b = document.createElement('button');
+            b.className = 'menu-btn';
+            b.innerText = topicObj.topic;
+            b.onclick = () => renderExamList(k, index);
+            list.appendChild(b);
+        });
+    }
+
+    // CẤP 3: Chọn Đề
+    function renderExamList(k, topicIndex) {
+        const topicObj = examDatabase[k][topicIndex];
+        document.getElementById('menu-title').innerText = topicObj.topic;
+        document.getElementById('back-link').style.display = 'block';
+        document.getElementById('back-link').onclick = () => renderTopicList(k);
+        const list = document.getElementById('menu-list');
+        list.innerHTML = '';
+
+        if(!topicObj.exams.length) {
+            list.innerHTML = "<p>Hiện chưa có đề thi nào.</p>";
+            return;
+        }
+
+        topicObj.exams.forEach(exam => {
+            let b = document.createElement('button');
+            b.className = 'menu-btn';
+            b.innerText = exam.title;
+            b.onclick = () => startQuiz(exam);
+            list.appendChild(b);
         });
     }
 
     function startQuiz(exam) {
-        // Đảo đề
-        let q1 = shuffle(exam.questions.filter(q => q.part === 1));
+        if(!exam.questions || exam.questions.length === 0) return alert("Đề này chưa có câu hỏi!");
+        
+        // Tạo bản sao dữ liệu để xáo trộn
+        let questionsCopy = JSON.parse(JSON.stringify(exam.questions));
+        
+        // Đảo đề từng phần
+        let q1 = shuffle(questionsCopy.filter(q => q.part === 1));
         q1.forEach(q => {
             let opts = q.a.map((t, idx) => ({ t, is: idx === q.c }));
             shuffle(opts);
             q.a = opts.map(o => o.t);
             q.c = opts.findIndex(o => o.is);
         });
-        let q2 = shuffle(exam.questions.filter(q => q.part === 2));
-        let q3 = shuffle(exam.questions.filter(q => q.part === 3));
+        let q2 = shuffle(questionsCopy.filter(q => q.part === 2));
+        let q3 = shuffle(questionsCopy.filter(q => q.part === 3));
 
         currentQuestions = [...q1, ...q2, ...q3];
         userAnswers = new Array(currentQuestions.length).fill(null);
+        
         document.getElementById('menuModal').style.display = 'none';
         document.getElementById('quiz-header').style.display = 'block';
         document.getElementById('nav-section').style.display = 'flex';
@@ -241,6 +287,7 @@
         document.getElementById('stu-name-display').innerText = studentName;
         document.getElementById('stu-class-display').innerText = studentClass;
         document.getElementById('exam-title-main').innerText = exam.title;
+        
         initNav(); initNumpad(); render(); startTimer();
     }
 
@@ -262,15 +309,18 @@
         let pCounts = [0,0,0];
         currentQuestions.forEach((q, i) => {
             pCounts[q.part-1]++;
-            let b = document.createElement('button'); b.className = 'nav-btn'; b.id = 'nav-'+i; b.innerText = pCounts[q.part-1];
-            b.onclick = () => { currentIdx = i; render(); }; groups[q.part-1].appendChild(b);
+            let b = document.createElement('button');
+            b.className = 'nav-btn'; b.id = 'nav-'+i; b.innerText = pCounts[q.part-1];
+            b.onclick = () => { currentIdx = i; render(); };
+            groups[q.part-1].appendChild(b);
         });
     }
 
     function initNumpad() {
         const zone = document.getElementById('numpad-btns');
         const keys = [1,2,3,4,5,6,7,8,9,0,'.','-'];
-        zone.innerHTML = keys.map(k => `<button class="menu-btn" style="padding:10px" onclick="pressKey('${k}')">${k}</button>`).join('') + `<button class="menu-btn" style="grid-column:span 3; background:var(--wrong)" onclick="pressKey('C')">XÓA</button>`;
+        zone.innerHTML = keys.map(k => `<button class="menu-btn" style="padding:10px" onclick="pressKey('${k}')">${k}</button>`).join('') + 
+                         `<button class="menu-btn" style="grid-column:span 3; background:var(--wrong)" onclick="pressKey('C')">XÓA</button>`;
     }
 
     function render() {
