@@ -115,10 +115,11 @@
 </div>
 
 <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWFEtON60jk4a7NxkrWJ_Wp6JKbh8ghf50mo3k33t8Bxjh7VUMG4HIoIIRG2QjdzayhA/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGlXQIyCLcQEmN7EWZ3R-leEQIU7vGMvHdD4sNBIae5Yax9aVaILRk3DyjsKwpk_COpw/exec";
     let studentName = "", studentClass = "", currentQuestions = [], userAnswers = [], currentIdx = 0, timeLeft = 90 * 60, timerInterval, isFinished = false;
     let quizStartTime = ""; // Thời gian bắt đầu mở đề
     let studentSBD = "";
+    let cheatCount = 0; // Biến đếm số lần học sinh rời khỏi tab/trình duyệt
     const classData = {
     "12": ["123T","12CT", "12CH", "12CL", "12CTIN", "12CA", "12CV", "12T",  "12HS1", "12HS2", "12L", "12XH1", "12XH2", "12TN1", "12TN2", "12TN3", "12TN4", "12TN5", "12TN6", "12TN7", "12TN8", "12TN9",  "Khác"],
     "11": ["123T","11CT", "11CH", "11CL", "11CTIN", "11CA", "11CV", "11T",  "11HS", "11L", "11XH1", "11XH2", "11TN1", "11TN2", "11TN3", "11TN4", "11TN5", "11TN6", "11TH1", "11TH2",  "Khác"],
@@ -221,7 +222,22 @@ function updateClassList() {
         list.appendChild(b);
     });
 }
-
+// Hàm theo dõi việc học sinh rời khỏi tab
+document.addEventListener('visibilitychange', function() {
+    // Chỉ kiểm tra khi bài thi đang diễn ra và chưa kết thúc
+    if (document.getElementById('game-main').style.display === 'grid' && !isFinished) {
+        if (document.hidden) {
+            cheatCount++;
+            
+            if (cheatCount === 1) {
+                alert("CẢNH BÁO LẦN 1: Bạn vừa rời khỏi trang thi! Nếu vi phạm lần nữa, hệ thống sẽ TỰ ĐỘNG NỘP BÀI.");
+            } else if (cheatCount >= 2) {
+                alert("VI PHẠM LẦN 2: Hệ thống đang tự động nộp bài do bạn cố tình rời khỏi trang thi!");
+                finish(); // Gọi hàm kết thúc và nộp bài ngay lập tức
+            }
+        }
+    }
+});
     function startQuiz(exam) {
         // 1. Thêm dòng này để ghi nhận chính xác lúc học sinh mở đề
     quizStartTime = new Date().toISOString(); 
@@ -397,18 +413,19 @@ function updateClassList() {
 
     // Gửi dữ liệu có kèm SBD lên Google Sheet
     fetch(GOOGLE_SCRIPT_URL, { 
-        method: 'POST', 
-        mode: 'no-cors', 
-        body: JSON.stringify({ 
-            sbd: studentSBD, // Thêm SBD vào đây
-            name: studentName, 
-            class: studentClass, 
-            score: score,
-            examTitle: document.getElementById('exam-title-main').innerText.trim(),
-            startTime: quizStartTime,
-            endTime: new Date().toISOString()
-        }) 
-    });
+    method: 'POST', 
+    mode: 'no-cors', 
+    body: JSON.stringify({ 
+        sbd: studentSBD,
+        name: studentName, 
+        class: studentClass, 
+        score: score,
+        examTitle: document.getElementById('exam-title-main').innerText.trim(),
+        startTime: quizStartTime,
+        endTime: new Date().toISOString(),
+        cheat: cheatCount // Thêm dòng này để báo cáo số lần rời tab
+    }) 
+});
 
     // Hiển thị kết quả (giữ nguyên các phần giao diện kết quả của thầy)
     document.getElementById('game-main').style.display='none'; 
