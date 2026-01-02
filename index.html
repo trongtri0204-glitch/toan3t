@@ -253,7 +253,8 @@
         else if(score < 6.5) cm.innerText = "Mức trung bình, cố gắng rèn luyện thêm bài tập.";
         else if(score < 8) cm.innerText = "Khá tốt! Phát huy thêm nhé.";
         else if(score < 9) cm.innerText = "Giỏi lắm! Bạn nắm kiến thức rất vững.";
-        else cm.innerText = "Xuất sắc! Một kết quả tuyệt vời.";
+        else if(score < 10) cm.innerText = "Xuất sắc! Một kết quả tuyệt vời.";
+        else cm.innerText = "Đỉnh của chóp nha.";
 
         let html = "";
         currentQuestions.forEach((q, i) => {
