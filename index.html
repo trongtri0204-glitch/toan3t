@@ -24,10 +24,42 @@
     <div class="box-container">
         <h2 style="color:var(--gold)">TOÁN 3T - HỆ THỐNG KIỂM TRA</h2>
         <p>ThS. Trần Trọng Trị - GV Chuyên Toán Trường THPT Gia Định</p>
-        <div class="input-group">
-            <input type="text" id="studentName" class="name-input" placeholder="Họ và Tên học sinh...">
-            <input type="text" id="studentClass" class="name-input" placeholder="Lớp (Ví dụ: 12CT, 11T, 12T1...)">
-        </div>
+        <div class="login-container">
+    <div class="input-group" style="margin-bottom: 20px;">
+        <label for="studentName" style="font-weight: bold; display: block; margin-bottom: 5px;">Họ và Tên:</label>
+        <input type="text" id="studentName" class="name-input" placeholder="Họ và Tên học sinh..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box;">
+    </div>
+
+    <div class="input-group" style="margin-bottom: 25px;">
+        <label for="stu-class" style="font-weight: bold; display: block; margin-bottom: 5px;">Lớp:</label>
+        <select id="stu-class" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; background-color: white; cursor: pointer;">
+            <option value="">-- Chọn lớp của bạn --</option>
+            <option value="123T">123T</option>
+            <option value="12CT">12CT (Chuyên Toán)</option>
+            <option value="12CH">12CH (Chuyên Hóa)</option>
+            <option value="12CL">12CL (Chuyên Lý)</option>
+            <option value="12CTIN">12CTIN (Chuyên Tin)</option>
+            <option value="12CA">12CA (Chuyên Anh)</option>
+            <option value="12CV">12CV (Chuyên Văn)</option>
+            <option value="12T">12T</option>
+            <option value="12L">12L</option>
+            <option value="12HS1">12HS1</option>
+            <option value="12HS2">12HS2</option>
+            <option value="12XH1">12XH1</option>
+            <option value="12XH2">12XH2</option>
+            <option value="12TN1">12TN1</option>
+            <option value="12TN2">12TN2</option>
+            <option value="12TN3">12TN3</option>
+            <option value="12TN4">12TN4</option>
+            <option value="12TN5">12TN5</option>
+            <option value="12TN6">12TN6</option>
+            <option value="12TN7">12TN7</option>
+            <option value="12TN8">12TN8</option>
+            <option value="12TN9">12TN9</option>
+            <option value="Khác">Khác</option>
+        </select>
+    </div>
+</div>
         <button class="submit-btn" onclick="goToMenu()">TIẾP TỤC</button>
     </div>
 </div>
@@ -90,13 +122,18 @@
     let quizStartTime = ""; // Thời gian bắt đầu mở đề
 
     function goToMenu() {
-        studentName = document.getElementById('studentName').value;
-        studentClass = document.getElementById('studentClass').value;
-        if(!studentName || !studentClass) return alert("Vui lòng nhập đủ thông tin!");
-        document.getElementById('nameModal').style.display = 'none';
-        document.getElementById('menuModal').style.display = 'flex';
-        renderClassMenu();
+    // Sửa ID từ 'studentName' (viết thường chữ s) và 'studentClass' thành đúng ID trong HTML
+    studentName = document.getElementById('studentName').value.trim();
+    studentClass = document.getElementById('stu-class').value; // Sửa từ studentClass thành stu-class
+
+    if (!studentName || !studentClass) {
+        return alert("Thầy mời bạn nhập đầy đủ Họ tên và chọn Lớp nhé!");
     }
+    
+    document.getElementById('nameModal').style.display = 'none';
+    document.getElementById('menuModal').style.display = 'flex';
+    renderClassMenu();
+}
 
     function renderClassMenu() {
         document.getElementById('menu-title').innerText = "CHỌN KHỐI LỚP";
