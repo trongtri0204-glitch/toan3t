@@ -80,7 +80,11 @@ header {
 
 .nav-btn.active { background: var(--accent); border-color: white; font-weight: bold; }
 .nav-btn.done { border-bottom: 3px solid var(--correct); }
-
+.nav-btn.missing {
+    background-color: #ff4d4d !important; /* Màu đỏ tươi */
+    color: white !important;
+    border: 1px solid #cc0000;
+}
 .game-container { 
     max-width: 1050px; width: 100%; display: none; 
     grid-template-columns: 1fr 300px; gap: 15px; 
