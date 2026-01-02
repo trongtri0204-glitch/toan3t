@@ -85,8 +85,9 @@
 </div>
 
 <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzohk91VFBlXPKBPHyS6VHsz43BDS3SigZsmgfs_V7VNVETtdeyHiSRzg0-CQov1Uwtgg/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyUSFSAOKTR05FTWsR0GgWED66R19it2Ms_s5mlpimYmpZibzB6aYWO3dX__apTVnZUHw/exec";
     let studentName = "", studentClass = "", currentQuestions = [], userAnswers = [], currentIdx = 0, timeLeft = 90 * 60, timerInterval, isFinished = false;
+    let quizStartTime = ""; // Thời gian bắt đầu mở đề
 
     function goToMenu() {
         studentName = document.getElementById('studentName').value;
@@ -138,6 +139,10 @@
     }
 
     function startQuiz(exam) {
+        // 1. Thêm dòng này để ghi nhận chính xác lúc học sinh mở đề
+    quizStartTime = new Date().toISOString(); 
+
+    // 2. Các logic trộn đề và hiển thị phía sau giữ nguyên
         let qCopy = JSON.parse(JSON.stringify(exam.questions));
         function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
         let q1 = shuffle(qCopy.filter(q => q.part === 1));
@@ -291,8 +296,9 @@
 }
 
     function finish() {
-        isFinished = true; clearInterval(timerInterval);
-        document.getElementById('timer-box').style.display='none';
+        isFinished = true; 
+    clearInterval(timerInterval);
+    document.getElementById('timer-box').style.display='none';
         let sc = 0;
         currentQuestions.forEach((q, i) => {
             if(q.type==='v1' && userAnswers[i]==q.c) sc += 0.25;
@@ -310,7 +316,9 @@
             name: studentName, 
             class: studentClass, 
             score: score,
-            examTitle: document.getElementById('exam-title-main').innerText // Lấy tên đề đang làm
+            examTitle: document.getElementById('exam-title-main').innerText.trim(),
+            startTime: quizStartTime,             // Giờ mở đề đã lưu từ lúc startQuiz
+            endTime: new Date().toISOString()     // Giờ hiện tại lúc bấm nộp bài
         }) 
     });
         document.getElementById('game-main').style.display='none'; 
