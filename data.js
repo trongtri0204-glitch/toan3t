@@ -108,7 +108,7 @@ const examDatabase = {
             {
               part: 1, type: "v1",
               q: "Thể tích vật thể giới hạn bởi hai mặt phẳng $x=a, x=b$ ($a < b$) có thiết diện tại $x$ là $S(x)$ được tính bởi:",
-              a: ["$\\displaystyle V = \\int_b^a S(x)dx$", "$\\displaystyle V = \\pi \\int_a^b S(x)dx$", "$V = \\pi \\int_a^b S(x)^2dx$", "$\\displaystyle \\int_a^b S(x)dx$"],
+              a: ["$\\displaystyle V = \\int_b^a S(x)dx$", "$\\displaystyle V = \\pi \\int_a^b S(x)dx$", "$\\displaystyle V = \\pi \\int_a^b S(x)^2dx$", "$\\displaystyle \\int_a^b S(x)dx$"],
               c: 3,
               sol: "Công thức tính thể tích vật thể theo thiết diện $S(x)$ không có hằng số $\\pi$.",
             },
@@ -141,7 +141,7 @@ const examDatabase = {
               items: [
                 { l: "Đạo hàm của hàm số là $f'(x) = 1 + \\dfrac{6}{x^2}$", r: true },
                 { l: "$\\displaystyle \\int f(x)dx = 0,5x^2 + 5x - 6\\ln|x| + C$", r: true },
-                { l: "Với mọi $F(x)$ là nguyên hàm của $f(x)$, ta có $F(2) - F(1) = \\int_1^2 f(x)dx$", r: true },
+                { l: "Với mọi $F(x)$ là nguyên hàm của $f(x)$, ta có $\\displaystyle F(2) - F(1) = \\int_1^2 f(x)dx$", r: true },
                 { l: "Nếu $G(x)$ là nguyên hàm thỏa $G(-2)=0$ thì $G(-6) = -13 - 6\\ln 3$", r: true }
               ],
               sol: "Tất cả các ý đều đúng dựa trên quy tắc tính đạo hàm, nguyên hàm cơ bản và định lý Newton-Leibniz.",
@@ -166,9 +166,9 @@ const examDatabase = {
             },
             {
               part: 3, num: 2, type: "v3",
-              q: "Cho hàm số $f(x), g(x)$ liên tục. Biết $\\int_2^7 [2f(x)+3g(x)]dx=2$ và $\\int_2^7 [f(x)-2g(x)]dx=4$. Tính $\\int_2^7 [f(x)-g(x)]dx$ (làm tròn đến 2 chữ số thập phân).",
+              q: "Cho hàm số $f(x), g(x)$ liên tục. Biết $\\displaystyle \\int_2^7 [2f(x)+3g(x)]dx=2$ và $\\displaystyle \\int_2^7 [f(x)-2g(x)]dx=4$. Tính $\\displaystyle \\int_2^7 [f(x)-g(x)]dx$ (làm tròn đến 2 chữ số thập phân).",
               c: "3.14",
-              sol: "Đặt $u = \\int_2^7 f(x)dx, v = \\int_2^7 g(x)dx$. <br> Ta có hệ: $2u+3v=2$ và $u-2v=4$. Giải hệ được $u=16/7, v=-6/7$. <br> Khi đó $u-v = 16/7 - (-6/7) = 22/7 \\approx 3.14$.",
+              sol: "Đặt $\\displaystyle u = \\int_2^7 f(x)dx, v = \\int_2^7 g(x)dx$. <br> Ta có hệ: $2u+3v=2$ và $u-2v=4$. Giải hệ được $u=16/7, v=-6/7$. <br> Khi đó $u-v = 16/7 - (-6/7) = 22/7 \\approx 3.14$.",
             },
             {
               part: 3, num: 3, type: "v3",
@@ -178,7 +178,7 @@ const examDatabase = {
             },
             {
               part: 3, num: 4, type: "v3",
-              q: "Cho hàm số $f(x) = 3x^2-x-9$ khi $x \\ge 2$ và $f(x) = x-1$ khi $x < 2$. Tính tích phân $I = \\displaystyle \\int_0^3 f(x)dx$.",
+              q: "Cho hàm số $f(x) = \\begin{cases} 3x^2 - x - 9 & \\text{khi } x \\geq 2 \\\\ x - 1 & \\text{khi } x < 2 \\end{cases}$. Tính tích phân $I = \\displaystyle \\int_0^3 f(x)dx$.",
               c: "7.5",
               sol: "Tách tích phân: $I = \\int_0^2 (x-1)dx + \\int_2^3 (3x^2-x-9)dx$. <br> $I = (x^2/2 - x)|_0^2 + (x^3 - x^2/2 - 9x)|_2^3 = 0 + 7,5 = 7,5$.",
             },
@@ -355,6 +355,198 @@ const examDatabase = {
               sol: "$x_2^3 = 2x_1^3 \\Rightarrow x_1/x_2 = 1/\\sqrt[3]{2} \\approx 0.8$."
             }
           ]
+        },
+        {
+title: "Đề 03",
+      questions: [
+        // PHẦN I (12 câu)
+        {
+          part: 1, type: "v1",
+          q: "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$ và có $\\displaystyle\\int_0^2 f(x) dx=9 ; \\displaystyle\\int_2^4 f(x) dx=4$. Tính $I=\\displaystyle\\int_0^4 f(x) dx$.",
+          a: ["$I=36$", "$I=5$", "$I=\\dfrac{9}{4}$", "$I=13$"],
+          c: 3,
+          sol: "Áp dụng tính chất cộng (chèn điểm) của tích phân: <br> $I = \\displaystyle\\int_0^4 f(x) dx = \\displaystyle\\int_0^2 f(x) dx + \\displaystyle\\int_2^4 f(x) dx$ <br> Thay giá trị đã cho vào: $I = 9 + 4 = 13$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Cho $f(x)$ là hàm số liên tục trên $[a ; b]$ và $F(x)$ là nguyên hàm của $f(x)$. Khẳng định nào sau đây là <b>sai</b>?",
+          a: [
+            "$\\displaystyle\\int_a^b f(x) dx=-\\displaystyle\\int_b^a f(t) dt$",
+            "$\\displaystyle\\int_a^a f(x) dx=0$",
+            "$\\displaystyle\\int_a^b f(x) dx=F(b)-F(a)$",
+            "$\\displaystyle\\int_a^b f(x) dx=f^{\\prime}(b)-f^{\\prime}(a)$"
+          ],
+          c: 3,
+          sol: "Theo công thức Newton-Leibniz: $\\displaystyle\\int_a^b f(x) dx = F(b) - F(a)$. Khẳng định D dùng đạo hàm $f'(x)$ là sai."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$, có đồ thị như hình vẽ. Gọi $S$ là diện tích hình phẳng được giới hạn bởi đồ thị hàm số $f(x)$, trục hoành và trục tung. Khẳng định nào sau đây đúng? <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de3/cau3.png'></div>",
+          a: [
+            "$S = \\displaystyle\\int_c^d f(x)dx - \\displaystyle\\int_d^0 f(x)dx$",
+            "$S = -\\displaystyle\\int_c^d f(x)dx - \\displaystyle\\int_d^0 f(x)dx$",
+            "$S = \\displaystyle\\int_c^d f(x)dx + \\displaystyle\\int_d^0 f(x)dx$",
+            "$S = -\\displaystyle\\int_c^d f(x)dx + \\displaystyle\\int_d^0 f(x)dx$"
+          ],
+          c: 0,
+          sol: "Dựa vào đồ thị: <br> - Phần 1 (từ $c$ đến $d$): Đồ thị nằm trên $Ox$ nên $S_1 = \\int_c^d f(x)dx$. <br> - Phần 2 (từ $d$ đến $0$): Đồ thị nằm dưới $Ox$ nên $S_2 = -\\int_d^0 f(x)dx$. <br> Vậy $S = S_1 + S_2 = \\int_c^d f(x)dx - \\int_d^0 f(x)dx$. <div class='img-container'><img src='images/12/tich_phan/de3/cau3_lg.png'></div>"
+        },
+        {
+          part: 1, type: "v1",
+          q: "Cho hai hàm số $y=f(x)$ và $y=g(x)$ liên tục trên $\\mathbb{R}$. Mệnh đề nào sau đây <b>sai</b>?",
+          a: [
+            "$\\displaystyle \\int [f(x)+g(x)]dx = \\int f(x)dx + \\int g(x)dx$",
+            "$\\displaystyle \\int [f(x)-g(x)]dx = \\int f(x)dx - \\int g(x)dx$",
+            "$\\displaystyle \\int kf(x)dx = k \\int f(x)dx$ với mọi hằng số $k$",
+            "$\\displaystyle \\int dx = x+C$"
+          ],
+          c: 2,
+          sol: "Tính chất đưa hằng số $k$ ra ngoài chỉ đúng khi $k \\neq 0$. Nếu $k=0$, vế trái ra $C$, vế phải ra $0$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Cho $\\displaystyle\\int_0^1 f(x)dx = 3$. Khi đó, $\\displaystyle\\int_0^1 (f(x)+1)dx$ có giá trị bằng:",
+          a: ["4", "1", "5", "7"],
+          c: 0,
+          sol: "$\\int_0^1 (f(x)+1)dx = \\int_0^1 f(x)dx + \\int_0^1 1 dx = 3 + [x]_0^1 = 3 + 1 = 4$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Biết $F(x)$ là một nguyên hàm của $f(x)=\\sin x$ và đồ thị đi qua điểm $M(0;1)$. Tính $F\\left(\\dfrac{\\pi}{2}\\right)$.",
+          a: ["1", "2", "-1", "0"],
+          c: 1,
+          sol: "$F(x) = \\int \\sin x dx = -\\cos x + C$. <br> Vì $F(0)=1 \\Rightarrow -1+C=1 \\Rightarrow C=2$. <br> Vậy $F(x) = -\\cos x + 2 \\Rightarrow F(\\pi/2) = -0 + 2 = 2$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Hàm số nào <b>không</b> phải là nguyên hàm của $f(x)=x^3$?",
+          a: ["$\\dfrac{x^4}{4}-1$", "$\\dfrac{x^4}{4}$", "$\\dfrac{x^4}{4}+1$", "$3 x^2$"],
+          c: 3,
+          sol: "Nguyên hàm của $x^3$ phải có dạng $x^4/4 + C$. $3x^2$ là đạo hàm, không phải nguyên hàm."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Tìm nguyên hàm của hàm số $f(x)=3 \\cos x+\\dfrac{1}{x^2}$ trên $(0 ;+\\infty)$.",
+          a: ["$3 \\cos x+\\ln x+C$", "$3 \\cos x+\\dfrac{1}{x}+C$", "$-3 \\sin x+\\dfrac{1}{x}+C$", "$3 \\sin x-\\dfrac{1}{x}+C$"],
+          c: 3,
+          sol: "$\\int (3\\cos x + x^{-2})dx = 3\\sin x + \\frac{x^{-1}}{-1} + C = 3\\sin x - \\frac{1}{x} + C$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Mặt cắt một vật thể vuông góc với trục $Ox$ tại $x$ ($-\\sqrt{3} \\leq x \\leq \\sqrt{3}$) là hình vuông cạnh $\\sqrt{3-x^2}$. Tính thể tích vật thể.",
+          a: ["$\\pi \\sqrt{3}$", "$4 \\sqrt{3}$", "$\\sqrt{3}$", "$4 \\pi \\sqrt{3}$"],
+          c: 1,
+          sol: "$S(x) = (\\sqrt{3-x^2})^2 = 3-x^2$. <br> $V = \\int_{-\\sqrt{3}}^{\\sqrt{3}} (3-x^2) dx = [3x - x^3/3]_{-\\sqrt{3}}^{\\sqrt{3}} = 4\\sqrt{3}$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Cho $D$ giới hạn bởi $y=\\sqrt{e^x+1}$, $Ox$, $x=1, x=2$. Tính thể tích khối tròn xoay khi quay $D$ quanh $Ox$ (làm tròn đến hàng phần chục).",
+          a: ["17,8", "17,7", "17,6", "17,9"],
+          c: 0,
+          sol: "$V = \\pi \\int_1^2 (\\sqrt{e^x+1})^2 dx = \\pi \\int_1^2 (e^x+1) dx = \\pi(e^2+2 - e - 1) \\approx 17,8$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Nếu $\\displaystyle\\int f(x) dx=\\frac{1}{x}+\\ln x+C$ thì $f(x)$ là:",
+          a: ["$-\\sqrt{x}+\\dfrac{1}{x}+\\ln x+C$", "$-\\dfrac{1}{x^2}+\\ln x+C$", "$\\dfrac{x-1}{x^2}$", "$\\sqrt{x}+\\ln x+C$"],
+          c: 2,
+          sol: "$f(x) = (\\frac{1}{x} + \\ln x)' = -\\frac{1}{x^2} + \\frac{1}{x} = \\frac{-1+x}{x^2} = \\frac{x-1}{x^2}$."
+        },
+        {
+          part: 1, type: "v1",
+          q: "Biết $\\displaystyle\\int_0^4 \\sqrt{1-\\frac{x^2}{16}} dx = a + b\\pi$. Giá trị $a^2+b^2$ bằng:",
+          a: ["1", "2", "4", "3"],
+          c: 0,
+          sol: "Đây là diện tích 1/4 hình elip $\\frac{x^2}{16} + y^2 = 1$. $S = \\frac{1}{4}\\pi \\cdot 4 \\cdot 1 = \\pi$. Suy ra $a=0, b=1 \\Rightarrow a^2+b^2=1$."
+        },
+
+        // PHẦN II (4 câu)
+        {
+          part: 2, num: 1, type: "v2",
+          q: "Cho hàm số $f(x)$ có đạo hàm $f^{\\prime}(x)=2-5 \\sin x$ và $f(0)=10$.",
+          items: [
+            { l: "$f(\\pi)=2 \\pi$", r: true },
+            { l: "$\\displaystyle\\int f^{\\prime}(x) dx=2 x-5 \\cos x+C$", r: false },
+            { l: "$f(x)=2 x+5 \\cos x+5$", r: true },
+            { l: "Diện tích giới hạn bởi $y=f(x), y=g(x)=5 \\cos x+9$ và trục tung bằng 4", r: true }
+          ],
+          sol: "1. $f(x) = 2x+5\\cos x+C \\Rightarrow f(0)=5+C=10 \\Rightarrow C=5$. <br> 2. $f(\\pi) = 2\\pi + 5(-1) + 5 = 2\\pi$. <br> 3. $f(x)=g(x) \\Leftrightarrow 2x+5=9 \\Leftrightarrow x=2$. $S = \\int_0^2 |2x-4|dx = 4$."
+        },
+        {
+          part: 2, num: 2, type: "v2",
+          q: "Cho số thực $a$ và hàm số $f(x)=\\begin{cases} 2x & \\text{khi } x \\leq 0 \\\\ a(x-x^2) & \\text{khi } x > 0 \\end{cases}$.",
+          items: [
+            { l: "$\\displaystyle\\int_{-1}^0 f(x) dx=\\int_{-1}^0 2 x dx$", r: true },
+            { l: "$\\displaystyle\\int_0^1 f(x) dx=-\\frac{a}{6}$", r: false },
+            { l: "Khi $a=2, \\displaystyle\\int_{-1}^1 f(x) d x=-\\frac{2}{3}$", r: true },
+            { l: "Điều kiện để $\\displaystyle\\int_{-1}^2 f(x) d x>3$ là $a>-6$", r: false }
+          ],
+          sol: "b) $\\int_0^1 a(x-x^2)dx = a(1/2-1/3) = a/6$. <br> c) $\\int_{-1}^1 = -1 + 2/6 = -2/3$. <br> d) $\\int_{-1}^2 = -1 + a(2-8/3) = -1 - 2a/3 > 3 \\Rightarrow a < -6$."
+        },
+        {
+          part: 2, num: 3, type: "v2",
+          q: "Một ca nô cao tốc di chuyển với vận tốc $v(t)=\\begin{cases} 0,5t, & 0 \\leq t < 2 \\\\ 1, & 2 \\leq t < 15 \\\\ 4-0,2t, & 15 \\leq t \\leq 20 \\end{cases}$.",
+          items: [
+            { l: "Vận tốc tại $t=1$ là $0,5$ (km/phút)", r: true },
+            { l: "Quãng đường trong 2 phút đầu bằng 1 km", r: true },
+            { l: "Mười phút cuối ca nô di chuyển được 8 km", r: true },
+            { l: "Vận tốc trung bình trong 20 phút là $0,775$ (km/phút)", r: false }
+          ],
+          sol: "b) $S_1 = \\int_0^2 0,5t dt = 1$. <br> c) $S_{10-20} = \\int_{10}^{15} 1 dt + \\int_{15}^{20} (4-0,2t) dt = 5 + 2,5 = 7,5$ km. <br> d) $v_{tb} = (1 + 13 + 2,5)/20 = 0,825$."
+        },
+        {
+          part: 2, num: 4, type: "v2",
+          q: "Cho hàm số $y=f(x)$ liên tục trên $\\mathbb{R}$ có đồ thị như hình vẽ. Gọi $(H)$ là hình phẳng giới hạn bởi đồ thị $f(x)$, $Ox$ và $x=-1, x=4$. <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de3/cau4_ds.png'></div>",
+          items: [
+            { l: "Diện tích (H) là $S = \\int_{-1}^4 |f(x)|dx$", r: true },
+            { l: "Nếu $F(x)$ là nguyên hàm thì $F(-1) > F(4)$", r: true },
+            { l: "Diện tích (H) là $S = \\int_{-1}^1 f(x)dx + \\int_1^4 f(x)dx$", r: false },
+            { l: "Thể tích khi quay (H) quanh trục hoành là $V = \\int_{-1}^4 f^2(x)dx$", r: false }
+          ],
+          sol: "b) $F(4)-F(-1) = \\int_{-1}^4 f(x)dx = S_A - S_B$. Nhìn hình $S_B > S_A$ nên $F(4)-F(-1) < 0 \\Rightarrow F(-1) > F(4)$. <br> d) Thiếu $\\pi$."
+        },
+
+        // PHẦN III (6 câu)
+        {
+          part: 3, num: 1, type: "v3",
+          q: "Tìm giá trị $b \\neq 1$ để $\\displaystyle\\int_1^b(2 x-6) dx=0$.",
+          c: "5",
+          sol: "$[x^2-6x]_1^b = b^2-6b - (1-6) = b^2-6b+5 = 0 \\Rightarrow b=1, b=5$. Chọn 5."
+        },
+        {
+          part: 3, num: 2, type: "v3",
+          q: "Tính tích phân $\\displaystyle\\int_0^{2026\\pi} \\sqrt{1+\\cos 2x} dx$ (làm tròn đến hàng đơn vị).",
+          c: "5730",
+          sol: "$\\sqrt{2\\cos^2 x} = \\sqrt{2}|\\cos x|$. <br> $I = 2026\\sqrt{2} \\int_0^\\pi |\\cos x|dx = 2026\\sqrt{2} \\cdot 2 = 4052\\sqrt{2} \\approx 5730$. <div class='img-container'><img src='images/12/tich_phan/de3/cau2_kq_lg.png'></div>"
+        },
+        {
+          part: 3, num: 3, type: "v3",
+          q: "Một ô tô chạy tốc độ $10(m/s)$ thì đạp phanh, $v(t)=-5 t+10$. Tính quãng đường từ lúc phanh đến khi dừng (mét).",
+          c: "10",
+          sol: "Dừng khi $v=0 \\Rightarrow t=2$. $S = \\int_0^2 (-5t+10)dt = [-2,5t^2+10t]_0^2 = 10$ m."
+        },
+        {
+          part: 3, num: 4, type: "v3",
+          q: "Nhiệt độ $T(t)$ là nguyên hàm của $f(t)=3t^2$ và $T(0)=1$. Tính nhiệt độ trung bình từ 0 đến 5 phút (làm tròn đến hàng đơn vị).",
+          c: "32",
+          sol: "$T(t) = t^3+1$. $T_{tb} = \\frac{1}{5}\\int_0^5 (t^3+1)dt = \\frac{1}{5}[t^4/4+t]_0^5 = 32,25 \\approx 32$."
+        },
+        {
+          part: 3, num: 5, type: "v3",
+          q: "Một lều trại parabol rộng 3m, cao 3m, sâu 6m. Tính thể tích không gian bên trong (m³). <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de3/cau5_kq.png'></div>",
+          c: "36",
+          sol: "Gắn hệ trục mặt trước: $y = ax^2+3$ qua $(1,5; 0) \\Rightarrow a = -4/3$. $S = \\int_{-1,5}^{1,5} (-4/3x^2+3)dx = 6$. $V = S \\cdot 6 = 36$ m³."
+        },
+        {
+          part: 3, num: 6, type: "v3",
+          q: "Cho (H) giới hạn bởi $y=\\sqrt{|\\sin x|}, y=0, x=0, x=1011\\pi$. Tính thể tích khi quay (H) quanh $Ox$ (làm tròn đến hàng đơn vị).",
+          c: "6352",
+          sol: "$V = \\pi \\int_0^{1011\\pi} |\\sin x|dx = 1011\\pi \\int_0^\\pi \\sin x dx = 1011\\pi \\cdot 2 = 2022\\pi \\approx 6352$."
+        }
+      ]
+    
+
+
         }
       ]
     },
