@@ -24,49 +24,37 @@
     <div class="box-container">
         <h2 style="color:var(--gold)">TOÁN 3T - HỆ THỐNG KIỂM TRA</h2>
         <p>ThS. Trần Trọng Trị - GV Chuyên Toán Trường THPT Gia Định</p>
+        
         <div class="login-container">
-    <div class="input-group" style="margin-bottom: 20px;">
-        <label for="studentName" style="font-weight: bold; display: block; margin-bottom: 5px;">Họ và Tên:</label>
-        <input type="text" id="studentName" class="name-input" placeholder="Họ và Tên học sinh..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box;">
-    </div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <label for="studentName" style="font-weight: bold; display: block; margin-bottom: 5px;">Họ và Tên:</label>
+                <input type="text" id="studentName" class="name-input" placeholder="Họ và Tên học sinh..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box;">
+            </div>
 
-    <div class="input-group" style="margin-bottom: 25px;">
-        <label for="stu-class" style="font-weight: bold; display: block; margin-bottom: 5px;">Lớp:</label>
-        <select id="stu-class" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; background-color: white; cursor: pointer;">
-            <option value="">-- Chọn lớp của bạn --</option>
-            <option value="123T">123T</option>
-            <option value="12CT">12CT (Chuyên Toán)</option>
-            <option value="12CH">12CH (Chuyên Hóa)</option>
-            <option value="12CL">12CL (Chuyên Lý)</option>
-            <option value="12CTIN">12CTIN (Chuyên Tin)</option>
-            <option value="12CA">12CA (Chuyên Anh)</option>
-            <option value="12CV">12CV (Chuyên Văn)</option>
-            <option value="12T">12T</option>
-            <option value="12L">12L</option>
-            <option value="12HS1">12HS1</option>
-            <option value="12HS2">12HS2</option>
-            <option value="12XH1">12XH1</option>
-            <option value="12XH2">12XH2</option>
-            <option value="12TN1">12TN1</option>
-            <option value="12TN2">12TN2</option>
-            <option value="12TN3">12TN3</option>
-            <option value="12TN4">12TN4</option>
-            <option value="12TN5">12TN5</option>
-            <option value="12TN6">12TN6</option>
-            <option value="12TN7">12TN7</option>
-            <option value="12TN8">12TN8</option>
-            <option value="12TN9">12TN9</option>
-            <option value="Khác">Khác</option>
-        </select>
-    </div>
-</div>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <label for="stu-grade" style="font-weight: bold; display: block; margin-bottom: 5px;">Khối:</label>
+                <select id="stu-grade" onchange="updateClassList()" style="width: 100%; padding: 10px; border: 1px solid var(--accent); border-radius: 5px; font-size: 16px; background-color: #0d1117; color: white; outline: none; cursor: pointer;">
+                    <option value="">-- Chọn Khối --</option>
+                    <option value="12">Khối 12</option>
+                    <option value="11">Khối 11</option>
+                    <option value="10">Khối 10</option>
+                </select>
+            </div>
+
+            <div id="class-container" class="input-group" style="margin-bottom: 25px; display: none;">
+                <label for="stu-class" style="font-weight: bold; display: block; margin-bottom: 5px;">Lớp:</label>
+                <select id="stu-class" style="width: 100%; padding: 10px; border: 1px solid var(--accent); border-radius: 5px; font-size: 16px; background-color: #0d1117; color: white; outline: none; cursor: pointer;">
+                    <option value="">-- Chọn lớp của bạn --</option>
+                </select>
+            </div>
+        </div>
         <button class="submit-btn" onclick="goToMenu()">TIẾP TỤC</button>
     </div>
 </div>
 
 <div id="menuModal" style="display:none;">
     <div class="box-container">
-        <h2 id="menu-title" style="color:var(--gold)">CHỌN KHỐI LỚP</h2>
+        <h2 id="menu-title" style="color:var(--gold)">CHỌN CHUYÊN ĐỀ</h2>
         <div id="menu-list" class="list-group"></div>
         <p id="back-link" style="display:none; color:var(--accent); cursor:pointer; margin-top:15px;">← Quay lại</p>
     </div>
@@ -121,10 +109,36 @@
     let studentName = "", studentClass = "", currentQuestions = [], userAnswers = [], currentIdx = 0, timeLeft = 90 * 60, timerInterval, isFinished = false;
     let quizStartTime = ""; // Thời gian bắt đầu mở đề
 
+    const classData = {
+    "12": ["123T","12CT", "12CH", "12CL", "12CTIN", "12CA", "12CV", "12T",  "12HS1", "12HS2", "12L", "12XH1", "12XH2", "12TN1", "12TN2", "12TN3", "12TN4", "12TN5", "12TN6", "12TN7", "12TN8", "12TN9",  "Khác"],
+    "11": ["123T","11CT", "11CH", "11CL", "11CTIN", "11CA", "11CV", "11T",  "11HS", "11L", "11XH1", "11XH2", "11TN1", "11TN2", "11TN3", "11TN4", "11TN5", "11TN6", "11TH1", "11TH2",  "Khác"],
+    "10": ["123T","10T1", "1OT2", "10TIN", "10L1", "1OL2", "1OA1", "10A2",  "10H1", "10H2", "10XH1", "11XH2", "10TN1", "10TN2", "10TN3", "10TN4", "10TN5", "10TN6", "10TH1", "10TH2","10TH3",  "Khác"]
+};
+
+// Hàm này để khi học sinh chọn Khối, ô Lớp sẽ tự hiện ra danh sách tương ứng
+function updateClassList() {
+    const grade = document.getElementById('stu-grade').value;
+    const classSelect = document.getElementById('stu-class');
+    const classContainer = document.getElementById('class-container');
+    
+    classSelect.innerHTML = '<option value="">-- Chọn lớp của bạn --</option>';
+    
+    if (grade && classData[grade]) {
+        classContainer.style.display = 'block'; // Hiện ô chọn lớp
+        classData[grade].forEach(cls => {
+            let opt = document.createElement('option');
+            opt.value = cls;
+            opt.innerText = cls;
+            classSelect.appendChild(opt);
+        });
+    } else {
+        classContainer.style.display = 'none'; // Ẩn nếu chưa chọn khối
+    }
+}
     function goToMenu() {
-    // Sửa ID từ 'studentName' (viết thường chữ s) và 'studentClass' thành đúng ID trong HTML
     studentName = document.getElementById('studentName').value.trim();
-    studentClass = document.getElementById('stu-class').value; // Sửa từ studentClass thành stu-class
+    // Đảm bảo ID này là 'stu-class' khớp với thẻ <select id="stu-class">
+    studentClass = document.getElementById('stu-class').value; 
 
     if (!studentName || !studentClass) {
         return alert("Thầy mời bạn nhập đầy đủ Họ tên và chọn Lớp nhé!");
@@ -147,33 +161,48 @@
     }
 
     function renderTopicList(k) {
-        document.getElementById('menu-title').innerText = "CHUYÊN ĐỀ LỚP " + k;
-        document.getElementById('back-link').style.display = 'block';
-        document.getElementById('back-link').onclick = renderClassMenu;
-        const list = document.getElementById('menu-list');
-        list.innerHTML = '';
-        if(!examDatabase[k] || examDatabase[k].length === 0) {
-            list.innerHTML = "<p>Chưa có dữ liệu chuyên đề.</p>";
-            return;
-        }
-        examDatabase[k].forEach((topicObj, index) => {
-            let b = document.createElement('button'); b.className = 'menu-btn';
-            b.innerText = topicObj.topic; b.onclick = () => renderExamList(k, index);
-            list.appendChild(b);
-        });
+    // Ép kiểu k sang số để khớp với file data.js
+    const gradeKey = parseInt(k); 
+
+    document.getElementById('menu-title').innerText = "CHUYÊN ĐỀ LỚP " + gradeKey;
+    document.getElementById('back-link').style.display = 'block';
+    document.getElementById('back-link').onclick = renderClassMenu;
+    const list = document.getElementById('menu-list');
+    list.innerHTML = '';
+
+    // Dùng gradeKey thay vì k
+    if(!examDatabase[gradeKey] || examDatabase[gradeKey].length === 0) {
+        list.innerHTML = "<p>Chưa có dữ liệu chuyên đề.</p>";
+        return;
     }
 
+    examDatabase[gradeKey].forEach((topicObj, index) => {
+        let b = document.createElement('button'); 
+        b.className = 'menu-btn';
+        b.innerText = topicObj.topic; 
+        // Truyền gradeKey vào đây luôn
+        b.onclick = () => renderExamList(gradeKey, index);
+        list.appendChild(b);
+    });
+}
+
     function renderExamList(k, tIdx) {
-        const topicObj = examDatabase[k][tIdx];
-        document.getElementById('menu-title').innerText = topicObj.topic;
-        document.getElementById('back-link').onclick = () => renderTopicList(k);
-        const list = document.getElementById('menu-list'); list.innerHTML = '';
-        topicObj.exams.forEach(exam => {
-            let b = document.createElement('button'); b.className = 'menu-btn';
-            b.innerText = exam.title; b.onclick = () => startQuiz(exam);
-            list.appendChild(b);
-        });
-    }
+    const gradeKey = parseInt(k); // Thêm dòng này để chắc chắn
+    const topicObj = examDatabase[gradeKey][tIdx];
+    
+    document.getElementById('menu-title').innerText = topicObj.topic;
+    document.getElementById('back-link').onclick = () => renderTopicList(gradeKey);
+    const list = document.getElementById('menu-list'); 
+    list.innerHTML = '';
+
+    topicObj.exams.forEach(exam => {
+        let b = document.createElement('button'); 
+        b.className = 'menu-btn';
+        b.innerText = exam.title; 
+        b.onclick = () => startQuiz(exam);
+        list.appendChild(b);
+    });
+}
 
     function startQuiz(exam) {
         // 1. Thêm dòng này để ghi nhận chính xác lúc học sinh mở đề
