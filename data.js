@@ -84,7 +84,7 @@ const examDatabase = {
                 "$\\displaystyle F(x) = \\dfrac{x^3}{3} - \\dfrac{3}{2}x^2 + \\ln x + C$",
               ],
               c: 1,
-              sol: "Lấy nguyên hàm từng số hạng: $\\displaystyle \\int x^2 dx = x^3/3$; $\\int -3x dx = -3x^2/2$; $\\int (1/x) dx = \\ln|x|$.",
+              sol: "Lấy nguyên hàm từng số hạng: $\\displaystyle \\int x^2 dx = x^3/3$; $\\displaystyle\\int -3x dx = -3x^2/2$; $\\int (1/x) dx = \\ln|x|$.",
             },
             {
               part: 1,
@@ -184,27 +184,22 @@ const examDatabase = {
               sol: "a) Sai vì $F'(x)=f(x)$. b) Đúng vì nguyên hàm sai khác hằng số C. c) Sai vì $\\int x dx = x^2/2$. d) Đúng vì $F(1)=0,5(1)^2+\\ln 1 + 1 = 1,5$.",
             },
             {
-              part: 2,
-              num: 2,
-              type: "v2",
-              q: "Cho hàm số $f(x) = 6x^5 - x^e$. Gọi $\\displaystyle I = \\int_a^b 6x^5 dx$ và $\\displaystyle J = \\int_a^b x^e dx$.",
-              items: [
-                {
-                  l: "$\\displaystyle \\int 6x^5 dx = 6 \\int x^5 dx$",
-                  r: true,
-                },
-                { l: "$\\displaystyle \\int f(x) dx = I + J$", r: false },
-                {
-                  l: "$\\displaystyle J = \\frac{b^{e+1}-a^{e+1}}{e+1}$",
-                  r: true,
-                },
-                {
-                  l: "$\\displaystyle \\int_0^1 f(x)dx = 1 - \\frac{1}{e+1}$",
-                  r: true,
-                },
-              ],
-              sol: "a) Đúng (tính chất nguyên hàm). b) Sai (đề bài cho $f(x)$ là hiệu). c) Đúng (công thức tích phân lũy thừa). d) Đúng vì $\\int_0^1 (6x^5-x^e)dx = (x^6 - x^{e+1}/(e+1))|_0^1 = 1 - 1/(e+1)$.",
-            },
+  part: 2,
+  num: 2,
+  type: "v2",
+  q: "Cho hàm số $f(x) = 6x^5 - x^e$. Gọi $\\displaystyle I = \\int_a^b 6x^5 dx$ và $\\displaystyle J = \\int_a^b x^e dx$. Xét tính đúng–sai của các khẳng định sau:",
+  items: [
+    { l: "Gọi $\\displaystyle A = \\int_a^b x^5 dx$ thì ta có $A = 6I$", r: false },
+    { l: "$\\displaystyle \\int_a^b f(x) dx = I + J$", r: false },
+    { l: "$\\displaystyle J = x^e \\big|_a^b = b^e - a^e$", r: false },
+    { l: "$\\displaystyle \\int_0^1 f(x) dx = m - \\frac{n}{e+p}$. Khi đó $m+n+p=3$", r: true }
+  ],
+  sol: "<b>Giải chi tiết:</b><br>" +
+       "a) <b>Sai.</b> Vì $I = 6 \\int_a^b x^5 dx = 6A$, suy ra $A = I/6$.<br>" +
+       "b) <b>Sai.</b> Vì $f(x) = 6x^5 - x^e$ nên $\\int f(x)dx = I - J$.<br>" +
+       "c) <b>Sai.</b> Vì $\\int x^e dx = \\frac{x^{e+1}}{e+1} + C$. Công thức đúng phải là $J = \\frac{b^{e+1}-a^{e+1}}{e+1}$.<br>" +
+       "d) <b>Đúng.</b> Ta có $\\int_0^1 (6x^5 - x^e)dx = (x^6 - \\frac{x^{e+1}}{e+1})\\big|_0^1 = 1 - \\frac{1}{e+1}$. Đồng nhất với $m - \\frac{n}{e+p}$ ta được $m=1, n=1, p=1 \\Rightarrow m+n+p=3$."
+},
             {
               part: 2,
               num: 3,
