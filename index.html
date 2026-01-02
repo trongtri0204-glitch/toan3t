@@ -85,7 +85,7 @@
 </div>
 
 <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjZBQWpiklw60rfJViq7FTkrnY7J9bFrvlLMB9_SLHlHKvSzQBuV3mZ-fd3jT6ofdWnA/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzohk91VFBlXPKBPHyS6VHsz43BDS3SigZsmgfs_V7VNVETtdeyHiSRzg0-CQov1Uwtgg/exec";
     let studentName = "", studentClass = "", currentQuestions = [], userAnswers = [], currentIdx = 0, timeLeft = 90 * 60, timerInterval, isFinished = false;
 
     function goToMenu() {
@@ -302,8 +302,17 @@
             } else if(q.type==='v3' && userAnswers[i]==q.c) sc += 0.5;
         });
         const score = parseFloat(sc.toFixed(2));
-        fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ name: studentName, class: studentClass, score: score }) });
-        
+        // Gửi dữ liệu điểm lên Google Sheet
+    fetch(GOOGLE_SCRIPT_URL, { 
+        method: 'POST', 
+        mode: 'no-cors', 
+        body: JSON.stringify({ 
+            name: studentName, 
+            class: studentClass, 
+            score: score,
+            examTitle: document.getElementById('exam-title-main').innerText // Lấy tên đề đang làm
+        }) 
+    });
         document.getElementById('game-main').style.display='none'; 
         document.getElementById('nav-section').style.display='none'; 
         document.getElementById('quiz-header').style.display='none';
