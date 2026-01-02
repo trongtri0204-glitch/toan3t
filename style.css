@@ -144,3 +144,28 @@ header {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
+
+/* Định dạng ô chọn lớp */
+select#stu-class {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+    /* Xóa mũi tên mặc định và thêm mũi tên tùy chỉnh */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23333" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+/* Hiệu ứng khi bấm vào ô chọn */
+select#stu-class:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+}
