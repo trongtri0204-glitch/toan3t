@@ -20,18 +20,27 @@
 
 <div id="timer-box">90:00</div>
 
+<body oncontextmenu="return false;">
+
+<div id="timer-box">90:00</div>
+
 <div id="nameModal">
     <div class="box-container">
         <h2 style="color:var(--gold)">TOÁN 3T - HỆ THỐNG KIỂM TRA</h2>
         <p>ThS. Trần Trọng Trị - GV Chuyên Toán Trường THPT Gia Định</p>
         
         <div class="login-container">
-            <div class="input-group" style="margin-bottom: 20px;">
+            <div class="input-group" style="margin-bottom: 15px;">
                 <label for="studentName" style="font-weight: bold; display: block; margin-bottom: 5px;">Họ và Tên:</label>
-                <input type="text" id="studentName" class="name-input" placeholder="Họ và Tên học sinh..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box;">
+                <input type="text" id="studentName" class="name-input" placeholder="Nhập họ và tên..." style="width: 100%; padding: 10px; border: 1px solid var(--accent); border-radius: 5px; font-size: 16px; background-color: #0d1117; color: white; box-sizing: border-box;">
             </div>
 
-            <div class="input-group" style="margin-bottom: 20px;">
+            <div class="input-group" style="margin-bottom: 15px;">
+                <label for="studentSBD" style="font-weight: bold; display: block; margin-bottom: 5px;">Số báo danh:</label>
+                <input type="number" id="studentSBD" class="name-input" placeholder="Nhập SBD..." style="width: 100%; padding: 10px; border: 1px solid var(--accent); border-radius: 5px; font-size: 16px; background-color: #0d1117; color: white; box-sizing: border-box;">
+            </div>
+
+            <div class="input-group" style="margin-bottom: 15px;">
                 <label for="stu-grade" style="font-weight: bold; display: block; margin-bottom: 5px;">Khối:</label>
                 <select id="stu-grade" onchange="updateClassList()" style="width: 100%; padding: 10px; border: 1px solid var(--accent); border-radius: 5px; font-size: 16px; background-color: #0d1117; color: white; outline: none; cursor: pointer;">
                     <option value="">-- Chọn Khối --</option>
@@ -48,6 +57,7 @@
                 </select>
             </div>
         </div>
+        
         <button class="submit-btn" onclick="goToMenu()">TIẾP TỤC</button>
     </div>
 </div>
@@ -105,10 +115,10 @@
 </div>
 
 <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyUSFSAOKTR05FTWsR0GgWED66R19it2Ms_s5mlpimYmpZibzB6aYWO3dX__apTVnZUHw/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWFEtON60jk4a7NxkrWJ_Wp6JKbh8ghf50mo3k33t8Bxjh7VUMG4HIoIIRG2QjdzayhA/exec";
     let studentName = "", studentClass = "", currentQuestions = [], userAnswers = [], currentIdx = 0, timeLeft = 90 * 60, timerInterval, isFinished = false;
     let quizStartTime = ""; // Thời gian bắt đầu mở đề
-
+    let studentSBD = "";
     const classData = {
     "12": ["123T","12CT", "12CH", "12CL", "12CTIN", "12CA", "12CV", "12T",  "12HS1", "12HS2", "12L", "12XH1", "12XH2", "12TN1", "12TN2", "12TN3", "12TN4", "12TN5", "12TN6", "12TN7", "12TN8", "12TN9",  "Khác"],
     "11": ["123T","11CT", "11CH", "11CL", "11CTIN", "11CA", "11CV", "11T",  "11HS", "11L", "11XH1", "11XH2", "11TN1", "11TN2", "11TN3", "11TN4", "11TN5", "11TN6", "11TH1", "11TH2",  "Khác"],
@@ -137,16 +147,24 @@ function updateClassList() {
 }
     function goToMenu() {
     studentName = document.getElementById('studentName').value.trim();
-    // Đảm bảo ID này là 'stu-class' khớp với thẻ <select id="stu-class">
-    studentClass = document.getElementById('stu-class').value; 
+    studentSBD = document.getElementById('studentSBD').value.trim();
+    studentClass = document.getElementById('stu-class').value;
 
-    if (!studentName || !studentClass) {
-        return alert("Thầy mời bạn nhập đầy đủ Họ tên và chọn Lớp nhé!");
+    if (!studentName || !studentSBD || !studentClass) {
+        return alert("Thầy mời bạn điền đầy đủ Họ tên, SBD và chọn Lớp nhé!");
     }
     
     document.getElementById('nameModal').style.display = 'none';
-    document.getElementById('menuModal').style.display = 'flex';
-    renderClassMenu();
+    
+    // Đảm bảo Modal Menu của thầy có ID là menuModal
+    const menuModal = document.getElementById('menuModal');
+    if (menuModal) {
+        menuModal.style.display = 'flex';
+        renderClassMenu();
+    } else {
+        // Nếu thầy chưa có menuModal, thầy có thể cho bắt đầu Quiz ngay hoặc hiện Menu
+        alert("Lỗi: Không tìm thấy Menu chọn đề!");
+    }
 }
 
     function renderClassMenu() {
@@ -219,7 +237,8 @@ function updateClassList() {
         document.getElementById('quiz-header').style.display = 'block';
         document.getElementById('nav-section').style.display = 'flex';
         document.getElementById('game-main').style.display = 'grid';
-        document.getElementById('stu-name-display').innerText = studentName;
+        // Trong hàm startQuiz, thêm dòng này:
+        document.getElementById('stu-name-display').innerText = studentSBD + " - " + studentName;
         document.getElementById('stu-class-display').innerText = studentClass;
         document.getElementById('exam-title-main').innerText = exam.title;
         initNav(); initNumpad(); render(); startTimer();
@@ -362,36 +381,41 @@ function updateClassList() {
 }
 
     function finish() {
-        isFinished = true; 
+    isFinished = true; 
     clearInterval(timerInterval);
-    document.getElementById('timer-box').style.display='none';
-        let sc = 0;
-        currentQuestions.forEach((q, i) => {
-            if(q.type==='v1' && userAnswers[i]==q.c) sc += 0.25;
-            else if(q.type==='v2' && userAnswers[i]) {
-                let c = 0; q.items.forEach((it, j) => { if(userAnswers[i][j]===it.r) c++; });
-                sc += [0, 0.1, 0.25, 0.5, 1.0][c];
-            } else if(q.type==='v3' && userAnswers[i]==q.c) sc += 0.5;
-        });
-        const score = parseFloat(sc.toFixed(2));
-        // Gửi dữ liệu điểm lên Google Sheet
+    document.getElementById('timer-box').style.display = 'none';
+    
+    let sc = 0;
+    currentQuestions.forEach((q, i) => {
+        if(q.type==='v1' && userAnswers[i]==q.c) sc += 0.25;
+        else if(q.type==='v2' && userAnswers[i]) {
+            let c = 0; q.items.forEach((it, j) => { if(userAnswers[i][j]===it.r) c++; });
+            sc += [0, 0.1, 0.25, 0.5, 1.0][c];
+        } else if(q.type==='v3' && userAnswers[i]==q.c) sc += 0.5;
+    });
+    const score = parseFloat(sc.toFixed(2));
+
+    // Gửi dữ liệu có kèm SBD lên Google Sheet
     fetch(GOOGLE_SCRIPT_URL, { 
         method: 'POST', 
         mode: 'no-cors', 
         body: JSON.stringify({ 
+            sbd: studentSBD, // Thêm SBD vào đây
             name: studentName, 
             class: studentClass, 
             score: score,
             examTitle: document.getElementById('exam-title-main').innerText.trim(),
-            startTime: quizStartTime,             // Giờ mở đề đã lưu từ lúc startQuiz
-            endTime: new Date().toISOString()     // Giờ hiện tại lúc bấm nộp bài
+            startTime: quizStartTime,
+            endTime: new Date().toISOString()
         }) 
     });
-        document.getElementById('game-main').style.display='none'; 
-        document.getElementById('nav-section').style.display='none'; 
-        document.getElementById('quiz-header').style.display='none';
-        document.getElementById('final-area').style.display='block'; 
-        document.getElementById('final-score').innerText = score;
+
+    // Hiển thị kết quả (giữ nguyên các phần giao diện kết quả của thầy)
+    document.getElementById('game-main').style.display='none'; 
+    document.getElementById('nav-section').style.display='none'; 
+    document.getElementById('quiz-header').style.display='none';
+    document.getElementById('final-area').style.display='block'; 
+    document.getElementById('final-score').innerText = score;
 
         // CẬP NHẬT: LOGIC NHẬN XÉT ĐIỂM
         const cm = document.getElementById('score-comment');
