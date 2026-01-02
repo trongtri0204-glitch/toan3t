@@ -217,11 +217,22 @@
     currentQuestions.forEach((q, i) => {
         let b = document.getElementById('nav-' + i), a = userAnswers[i];
         b.classList.remove('done', 'missing');
+        
         if (q.type === 'v2') {
-            if (a && !a.includes(null)) b.classList.add('done');
-            else if (a && a.some(v => v !== null)) b.classList.add('missing'); // Đang làm dở
+            // Phần II: Đúng/Sai
+            if (a && a.includes(null)) {
+                if (a.some(v => v !== null)) b.classList.add('missing');
+            } else if (a && !a.includes(null)) {
+                b.classList.add('done');
+            }
         } else {
-            if (a !== null && a !== "") b.classList.add('done');
+            // Phần I & III: Trắc nghiệm & Điền số
+            if (a !== null && a !== "") {
+                b.classList.add('done');
+            } else {
+                // Nếu muốn bảng số câu luôn hiện đỏ những câu chưa làm:
+                b.classList.add('missing'); 
+            }
         }
     });
 }
@@ -251,12 +262,25 @@
     });
 
     if (missingList.length > 0) {
-        // Tạo chuỗi danh sách các câu chưa làm, ngăn cách bằng xuống dòng
+        // Cập nhật màu đỏ ngay lập tức cho các câu chưa làm trên bảng điều hướng
+        updateNav(); 
+
+        // Tạo nội dung thông báo liệt kê các câu còn thiếu
         let msg = `Bạn còn ${missingList.length} câu chưa hoàn thành:\n\n- ` + missingList.join('\n- ');
-        msg += `\n\nBạn có muốn QUAY LẠI làm tiếp không?\n(Nhấn OK để làm tiếp, nhấn Cancel để vẫn nộp bài)`;
+        msg += `\n\nBạn có muốn QUAY LẠI làm tiếp không?\n(Nhấn OK để quay lại câu chưa làm, nhấn Cancel để vẫn nộp bài)`;
         
         if (confirm(msg)) {
-            return; // Học sinh chọn OK để quay lại làm bài
+            // TÌM CÂU CHƯA LÀM ĐẦU TIÊN ĐỂ NHẢY ĐẾN
+            let firstMissingIdx = currentQuestions.findIndex((q, i) => {
+                let a = userAnswers[i];
+                return (q.type === 'v2') ? (!a || a.includes(null)) : (a === null || a === "");
+            });
+            
+            if (firstMissingIdx !== -1) {
+                currentIdx = firstMissingIdx;
+                render(); // Cập nhật lại giao diện câu hỏi
+            }
+            return; // Thoát hàm submitTest để học sinh làm bài tiếp
         }
     }
     
