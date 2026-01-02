@@ -408,14 +408,14 @@ title: "Đề 03",
           q: "Cho $\\displaystyle\\int_0^1 f(x)dx = 3$. Khi đó, $\\displaystyle\\int_0^1 (f(x)+1)dx$ có giá trị bằng:",
           a: ["4", "1", "5", "7"],
           c: 0,
-          sol: "$\\int_0^1 (f(x)+1)dx = \\int_0^1 f(x)dx + \\int_0^1 1 dx = 3 + [x]_0^1 = 3 + 1 = 4$."
+          sol: "$\\displaystyle \\int_0^1 (f(x)+1)dx = \\int_0^1 f(x)dx + \\int_0^1 1 dx = 3 + [x]_0^1 = 3 + 1 = 4$."
         },
         {
           part: 1, type: "v1",
           q: "Biết $F(x)$ là một nguyên hàm của $f(x)=\\sin x$ và đồ thị đi qua điểm $M(0;1)$. Tính $F\\left(\\dfrac{\\pi}{2}\\right)$.",
           a: ["1", "2", "-1", "0"],
           c: 1,
-          sol: "$F(x) = \\int \\sin x dx = -\\cos x + C$. <br> Vì $F(0)=1 \\Rightarrow -1+C=1 \\Rightarrow C=2$. <br> Vậy $F(x) = -\\cos x + 2 \\Rightarrow F(\\pi/2) = -0 + 2 = 2$."
+          sol: "$\\displaystyle F(x) = \\int \\sin x dx = -\\cos x + C$. <br> Vì $F(0)=1 \\Rightarrow -1+C=1 \\Rightarrow C=2$. <br> Vậy $F(x) = -\\cos x + 2 \\Rightarrow F(\\pi/2) = -0 + 2 = 2$."
         },
         {
           part: 1, type: "v1",
@@ -429,7 +429,7 @@ title: "Đề 03",
           q: "Tìm nguyên hàm của hàm số $f(x)=3 \\cos x+\\dfrac{1}{x^2}$ trên $(0 ;+\\infty)$.",
           a: ["$3 \\cos x+\\ln x+C$", "$3 \\cos x+\\dfrac{1}{x}+C$", "$-3 \\sin x+\\dfrac{1}{x}+C$", "$3 \\sin x-\\dfrac{1}{x}+C$"],
           c: 3,
-          sol: "$\\int (3\\cos x + x^{-2})dx = 3\\sin x + \\frac{x^{-1}}{-1} + C = 3\\sin x - \\frac{1}{x} + C$."
+          sol: "$\\displaystyle \\int (3\\cos x + x^{-2})dx = 3\\sin x + \\frac{x^{-1}}{-1} + C = 3\\sin x - \\frac{1}{x} + C$."
         },
         {
           part: 1, type: "v1",
@@ -443,21 +443,21 @@ title: "Đề 03",
           q: "Cho $D$ giới hạn bởi $y=\\sqrt{e^x+1}$, $Ox$, $x=1, x=2$. Tính thể tích khối tròn xoay khi quay $D$ quanh $Ox$ (làm tròn đến hàng phần chục).",
           a: ["17,8", "17,7", "17,6", "17,9"],
           c: 0,
-          sol: "$V = \\pi \\int_1^2 (\\sqrt{e^x+1})^2 dx = \\pi \\int_1^2 (e^x+1) dx = \\pi(e^2+2 - e - 1) \\approx 17,8$."
+          sol: "$\\displaystyle V = \\pi \\int_1^2 (\\sqrt{e^x+1})^2 dx = \\pi \\int_1^2 (e^x+1) dx = \\pi(e^2+2 - e - 1) \\approx 17,8$."
         },
         {
           part: 1, type: "v1",
           q: "Nếu $\\displaystyle\\int f(x) dx=\\frac{1}{x}+\\ln x+C$ thì $f(x)$ là:",
           a: ["$-\\sqrt{x}+\\dfrac{1}{x}+\\ln x+C$", "$-\\dfrac{1}{x^2}+\\ln x+C$", "$\\dfrac{x-1}{x^2}$", "$\\sqrt{x}+\\ln x+C$"],
           c: 2,
-          sol: "$f(x) = (\\frac{1}{x} + \\ln x)' = -\\frac{1}{x^2} + \\frac{1}{x} = \\frac{-1+x}{x^2} = \\frac{x-1}{x^2}$."
+          sol: "\\displaystyle $f(x) = (\\frac{1}{x} + \\ln x)' = -\\frac{1}{x^2} + \\frac{1}{x} = \\frac{-1+x}{x^2} = \\frac{x-1}{x^2}$."
         },
         {
           part: 1, type: "v1",
           q: "Biết $\\displaystyle\\int_0^4 \\sqrt{1-\\frac{x^2}{16}} dx = a + b\\pi$. Giá trị $a^2+b^2$ bằng:",
           a: ["1", "2", "4", "3"],
           c: 0,
-          sol: "Đây là diện tích 1/4 hình elip $\\frac{x^2}{16} + y^2 = 1$. $S = \\frac{1}{4}\\pi \\cdot 4 \\cdot 1 = \\pi$. Suy ra $a=0, b=1 \\Rightarrow a^2+b^2=1$."
+          sol: "Đây là diện tích 1/4 hình elip $\\displaystyle \\frac{x^2}{16} + y^2 = 1$. $S = \\frac{1}{4}\\pi \\cdot 4 \\cdot 1 = \\pi$. Suy ra $a=0, b=1 \\Rightarrow a^2+b^2=1$."
         },
 
         // PHẦN II (4 câu)
@@ -470,7 +470,7 @@ title: "Đề 03",
             { l: "$f(x)=2 x+5 \\cos x+5$", r: true },
             { l: "Diện tích giới hạn bởi $y=f(x), y=g(x)=5 \\cos x+9$ và trục tung bằng 4", r: true }
           ],
-          sol: "1. $f(x) = 2x+5\\cos x+C \\Rightarrow f(0)=5+C=10 \\Rightarrow C=5$. <br> 2. $f(\\pi) = 2\\pi + 5(-1) + 5 = 2\\pi$. <br> 3. $f(x)=g(x) \\Leftrightarrow 2x+5=9 \\Leftrightarrow x=2$. $S = \\int_0^2 |2x-4|dx = 4$."
+          sol: "1. $f(x) = 2x+5\\cos x+C \\Rightarrow f(0)=5+C=10 \\Rightarrow C=5$. <br> 2. $f(\\pi) = 2\\pi + 5(-1) + 5 = 2\\pi$. <br> 3. $f(x)=g(x) \\Leftrightarrow 2x+5=9 \\Leftrightarrow x=2$. $\\displaystyle S = \\int_0^2 |2x-4|dx = 4$."
         },
         {
           part: 2, num: 2, type: "v2",
@@ -481,7 +481,7 @@ title: "Đề 03",
             { l: "Khi $a=2, \\displaystyle\\int_{-1}^1 f(x) d x=-\\frac{2}{3}$", r: true },
             { l: "Điều kiện để $\\displaystyle\\int_{-1}^2 f(x) d x>3$ là $a>-6$", r: false }
           ],
-          sol: "b) $\\int_0^1 a(x-x^2)dx = a(1/2-1/3) = a/6$. <br> c) $\\int_{-1}^1 = -1 + 2/6 = -2/3$. <br> d) $\\int_{-1}^2 = -1 + a(2-8/3) = -1 - 2a/3 > 3 \\Rightarrow a < -6$."
+          sol: "b) $\\displaystyle \\int_0^1 a(x-x^2)dx = a(1/2-1/3) = a/6$. <br> c) $\\displaystyle \\int_{-1}^1 = -1 + 2/6 = -2/3$. <br> d) $\\displaystyle \\int_{-1}^2 = -1 + a(2-8/3) = -1 - 2a/3 > 3 \\Rightarrow a < -6$."
         },
         {
           part: 2, num: 3, type: "v2",
@@ -492,18 +492,18 @@ title: "Đề 03",
             { l: "Mười phút cuối ca nô di chuyển được 8 km", r: true },
             { l: "Vận tốc trung bình trong 20 phút là $0,775$ (km/phút)", r: false }
           ],
-          sol: "b) $S_1 = \\int_0^2 0,5t dt = 1$. <br> c) $S_{10-20} = \\int_{10}^{15} 1 dt + \\int_{15}^{20} (4-0,2t) dt = 5 + 2,5 = 7,5$ km. <br> d) $v_{tb} = (1 + 13 + 2,5)/20 = 0,825$."
+          sol: "b) $\\displaystyle S_1 = \\int_0^2 0,5t dt = 1$. <br> c) $\\displaystyle S_{10-20} = \\int_{10}^{15} 1 dt + \\int_{15}^{20} (4-0,2t) dt = 5 + 2,5 = 7,5$ km. <br> d) $v_{tb} = (1 + 13 + 2,5)/20 = 0,825$."
         },
         {
           part: 2, num: 4, type: "v2",
           q: "Cho hàm số $y=f(x)$ liên tục trên $\\mathbb{R}$ có đồ thị như hình vẽ. Gọi $(H)$ là hình phẳng giới hạn bởi đồ thị $f(x)$, $Ox$ và $x=-1, x=4$. <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de3/cau4_ds.png'></div>",
           items: [
-            { l: "Diện tích (H) là $S = \\int_{-1}^4 |f(x)|dx$", r: true },
+            { l: "Diện tích (H) là $\\displaystyle S = \\int_{-1}^4 |f(x)|dx$", r: true },
             { l: "Nếu $F(x)$ là nguyên hàm thì $F(-1) > F(4)$", r: true },
-            { l: "Diện tích (H) là $S = \\int_{-1}^1 f(x)dx + \\int_1^4 f(x)dx$", r: false },
-            { l: "Thể tích khi quay (H) quanh trục hoành là $V = \\int_{-1}^4 f^2(x)dx$", r: false }
+            { l: "Diện tích (H) là $\\displaystyle S = \\int_{-1}^1 f(x)dx + \\int_1^4 f(x)dx$", r: false },
+            { l: "Thể tích khi quay (H) quanh trục hoành là $\\displaystyle V = \\int_{-1}^4 f^2(x)dx$", r: false }
           ],
-          sol: "b) $F(4)-F(-1) = \\int_{-1}^4 f(x)dx = S_A - S_B$. Nhìn hình $S_B > S_A$ nên $F(4)-F(-1) < 0 \\Rightarrow F(-1) > F(4)$. <br> d) Thiếu $\\pi$."
+          sol: "b) $\\displaystyle F(4)-F(-1) = \\int_{-1}^4 f(x)dx = S_A - S_B$. Nhìn hình $S_B > S_A$ nên $F(4)-F(-1) < 0 \\Rightarrow F(-1) > F(4)$. <br> d) Thiếu $\\pi$."
         },
 
         // PHẦN III (6 câu)
@@ -517,31 +517,31 @@ title: "Đề 03",
           part: 3, num: 2, type: "v3",
           q: "Tính tích phân $\\displaystyle\\int_0^{2026\\pi} \\sqrt{1+\\cos 2x} dx$ (làm tròn đến hàng đơn vị).",
           c: "5730",
-          sol: "$\\sqrt{2\\cos^2 x} = \\sqrt{2}|\\cos x|$. <br> $I = 2026\\sqrt{2} \\int_0^\\pi |\\cos x|dx = 2026\\sqrt{2} \\cdot 2 = 4052\\sqrt{2} \\approx 5730$. <div class='img-container'><img src='images/12/tich_phan/de3/cau2_kq_lg.png'></div>"
+          sol: "$\\displaystyle \\sqrt{2\\cos^2 x} = \\sqrt{2}|\\cos x|$. <br> $I = 2026\\sqrt{2} \\int_0^\\pi |\\cos x|dx = 2026\\sqrt{2} \\cdot 2 = 4052\\sqrt{2} \\approx 5730$. <div class='img-container'><img src='images/12/tich_phan/de3/cau2_kq_lg.png'></div>"
         },
         {
           part: 3, num: 3, type: "v3",
           q: "Một ô tô chạy tốc độ $10(m/s)$ thì đạp phanh, $v(t)=-5 t+10$. Tính quãng đường từ lúc phanh đến khi dừng (mét).",
           c: "10",
-          sol: "Dừng khi $v=0 \\Rightarrow t=2$. $S = \\int_0^2 (-5t+10)dt = [-2,5t^2+10t]_0^2 = 10$ m."
+          sol: "Dừng khi $\\displaystyle v=0 \\Rightarrow t=2$. $S = \\int_0^2 (-5t+10)dt = [-2,5t^2+10t]_0^2 = 10$ m."
         },
         {
           part: 3, num: 4, type: "v3",
           q: "Nhiệt độ $T(t)$ là nguyên hàm của $f(t)=3t^2$ và $T(0)=1$. Tính nhiệt độ trung bình từ 0 đến 5 phút (làm tròn đến hàng đơn vị).",
           c: "32",
-          sol: "$T(t) = t^3+1$. $T_{tb} = \\frac{1}{5}\\int_0^5 (t^3+1)dt = \\frac{1}{5}[t^4/4+t]_0^5 = 32,25 \\approx 32$."
+          sol: "$\\displaystyle T(t) = t^3+1$. $T_{tb} = \\frac{1}{5}\\int_0^5 (t^3+1)dt = \\frac{1}{5}[t^4/4+t]_0^5 = 32,25 \\approx 32$."
         },
         {
           part: 3, num: 5, type: "v3",
           q: "Một lều trại parabol rộng 3m, cao 3m, sâu 6m. Tính thể tích không gian bên trong (m³). <div class='img-container'><img src='images/12/nguyen_ham_tich_phan/de3/cau5_kq.png'></div>",
           c: "36",
-          sol: "Gắn hệ trục mặt trước: $y = ax^2+3$ qua $(1,5; 0) \\Rightarrow a = -4/3$. $S = \\int_{-1,5}^{1,5} (-4/3x^2+3)dx = 6$. $V = S \\cdot 6 = 36$ m³."
+          sol: "Gắn hệ trục mặt trước: $y = ax^2+3$ qua $(1,5; 0) \\Rightarrow a = -4/3$. $\\displaystyle S = \\int_{-1,5}^{1,5} (-4/3x^2+3)dx = 6$. $V = S \\cdot 6 = 36$ m³."
         },
         {
           part: 3, num: 6, type: "v3",
           q: "Cho (H) giới hạn bởi $y=\\sqrt{|\\sin x|}, y=0, x=0, x=1011\\pi$. Tính thể tích khi quay (H) quanh $Ox$ (làm tròn đến hàng đơn vị).",
           c: "6352",
-          sol: "$V = \\pi \\int_0^{1011\\pi} |\\sin x|dx = 1011\\pi \\int_0^\\pi \\sin x dx = 1011\\pi \\cdot 2 = 2022\\pi \\approx 6352$."
+          sol: "$\\displaystyle V = \\pi \\int_0^{1011\\pi} |\\sin x|dx = 1011\\pi \\int_0^\\pi \\sin x dx = 1011\\pi \\cdot 2 = 2022\\pi \\approx 6352$."
         }
       ]
     
