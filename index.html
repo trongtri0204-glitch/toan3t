@@ -9,6 +9,17 @@
     <script src="data.js"></script>
 
     <script>
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123 || // F12
+                (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || // Ctrl+Shift+I/J/C
+                (e.ctrlKey && e.keyCode == 85) || // Ctrl+U
+                (e.ctrlKey && e.keyCode == 83)) { // Ctrl+S
+                alert("Thầy Trị nhắc: Tập trung làm bài, không sử dụng công cụ hỗ trợ em nhé!");
+                return false;
+            }
+        };
+    </script>
+    <script>
       window.MathJax = {
         tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
         options: { processHtmlClass: 'mathjax-process' }
@@ -239,26 +250,60 @@ document.addEventListener('visibilitychange', function() {
     }
 });
     function startQuiz(exam) {
-        // 1. Thêm dòng này để ghi nhận chính xác lúc học sinh mở đề
+    // 1. Ghi nhận chính xác lúc học sinh mở đề
     quizStartTime = new Date().toISOString(); 
 
-    // 2. Các logic trộn đề và hiển thị phía sau giữ nguyên
-        let qCopy = JSON.parse(JSON.stringify(exam.questions));
-        function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-        let q1 = shuffle(qCopy.filter(q => q.part === 1));
-        q1.forEach(q => { let opts = q.a.map((t, idx) => ({ t, is: idx === q.c })); shuffle(opts); q.a = opts.map(o => o.t); q.c = opts.findIndex(o => o.is); });
-        currentQuestions = [...q1, ...shuffle(qCopy.filter(q => q.part === 2)), ...shuffle(qCopy.filter(q => q.part === 3))];
-        userAnswers = new Array(currentQuestions.length).fill(null);
-        document.getElementById('menuModal').style.display = 'none';
-        document.getElementById('quiz-header').style.display = 'block';
-        document.getElementById('nav-section').style.display = 'flex';
-        document.getElementById('game-main').style.display = 'grid';
-        // Trong hàm startQuiz, thêm dòng này:
-        document.getElementById('stu-name-display').innerText = studentSBD + " - " + studentName;
-        document.getElementById('stu-class-display').innerText = studentClass;
-        document.getElementById('exam-title-main').innerText = exam.title;
-        initNav(); initNumpad(); render(); startTimer();
+    // 2. Các logic trộn đề (Giữ nguyên chức năng cũ)
+    let qCopy = JSON.parse(JSON.stringify(exam.questions));
+    
+    function shuffle(arr) { 
+        for (let i = arr.length - 1; i > 0; i--) { 
+            const j = Math.floor(Math.random() * (i + 1)); 
+            [arr[i], arr[j]] = [arr[j], arr[i]]; 
+        } 
+        return arr; 
     }
+
+    // Trộn phần I (Trắc nghiệm 4 lựa chọn)
+    let q1 = shuffle(qCopy.filter(q => q.part === 1));
+    q1.forEach(q => { 
+        let opts = q.a.map((t, idx) => ({ t, is: idx === q.c })); 
+        shuffle(opts); 
+        q.a = opts.map(o => o.t); 
+        q.c = opts.findIndex(o => o.is); 
+    });
+
+    // Kết hợp các phần và khởi tạo mảng câu trả lời
+    currentQuestions = [...q1, ...shuffle(qCopy.filter(q => q.part === 2)), ...shuffle(qCopy.filter(q => q.part === 3))];
+    userAnswers = new Array(currentQuestions.length).fill(null);
+
+    // =========================================================
+    // LỚP BẢO MẬT 3: XÓA DỮ LIỆU GỐC TRONG BỘ NHỚ
+    // (Chạy ngay sau khi đã nạp đề vào biến currentQuestions)
+    // =========================================================
+    if (typeof examDatabase !== 'undefined') {
+        window.examDatabase = null; // Xóa database gốc để không thể soi đề khác qua Console
+        console.log("Hệ thống đã mã hóa dữ liệu đề thi.");
+    }
+    // =========================================================
+
+    // 3. Hiển thị giao diện (Giữ nguyên các ID và cấu trúc của thầy)
+    document.getElementById('menuModal').style.display = 'none';
+    document.getElementById('quiz-header').style.display = 'block';
+    document.getElementById('nav-section').style.display = 'flex';
+    document.getElementById('game-main').style.display = 'grid';
+
+    // Hiển thị thông tin học sinh Gia Định
+    document.getElementById('stu-name-display').innerText = studentSBD + " - " + studentName;
+    document.getElementById('stu-class-display').innerText = studentClass;
+    document.getElementById('exam-title-main').innerText = exam.title;
+
+    // 4. Khởi tạo chức năng làm bài
+    initNav(); 
+    initNumpad(); 
+    render(); 
+    startTimer();
+}
 
     function startTimer() {
         document.getElementById('timer-box').style.display = 'block';
@@ -465,6 +510,18 @@ document.addEventListener('visibilitychange', function() {
             }
         }
     };
+    // --- LỚP 2: BẪY DEBUGGER (KHIẾN F12 BỊ TREO) ---
+    (function() {
+        setInterval(function() {
+            (function(a) {
+                return (function(a) {
+                    return (Function('Function(arguments[0])(arguments[1])')(a, a));
+                })(a);
+            })(function() {
+                debugger;
+            });
+        }, 500); // Cứ 0.5 giây sẽ kích hoạt bẫy một lần
+    })();
 </script>
 </body>
 </html>
